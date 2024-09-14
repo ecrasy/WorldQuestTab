@@ -1841,7 +1841,7 @@ function WQT_CoreMixin:HideOfficialMapPins()
 		end
 		
 		-- Bonus world quests
-		WQT_Utils:ItterateAllBonusObjectivePins(function(pin) self:TryHideOfficialMapPin(pin); end);
+		-- WQT_Utils:ItterateAllBonusObjectivePins(function(pin) self:TryHideOfficialMapPin(pin); end);
 	end
 end
 
