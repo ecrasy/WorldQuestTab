@@ -1464,7 +1464,7 @@ function WQT_ScrollListMixin:FilterQuestList()
 
 	for k, questInfo in ipairs(self.questList) do
 		questInfo.passedFilter = false;
-		if (questInfo.isValid and not questInfo.alwaysHide and questInfo.hasRewardData and not questInfo:IsExpired()) then
+		if questInfo.isValid and questInfo.hasRewardData and not questInfo:IsExpired() then
 			local passed = false;
 			-- Filter passes don't care about anything else
 			if(WQT_Utils:QuestIsVIQ(questInfo)) then
