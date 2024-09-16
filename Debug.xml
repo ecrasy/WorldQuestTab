@@ -1,16 +1,13 @@
-﻿ <Ui xmlns="http://www.blizzard.com/wow/ui/"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿ <Ui
+	xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ../../FrameXML/UI.xsd">
-
 	<Script file="Debug.lua"/>
-	
 	<GameTooltip name="WQT_DebugTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate"/>
-	
-	<EditBox name="WQT_CopyBoxTemplate" inherits="InputBoxTemplate" autoFocus="false" virtual="true"> 
+	<EditBox name="WQT_CopyBoxTemplate" inherits="InputBoxTemplate" autoFocus="false" virtual="true">
 		<Size y="20"/>
 		<Layers>
 			<Layer level="ARTWORK">
-				
 				<FontString parentKey="Label" inherits="GameFontWhiteSmall" justifyH="LEFT" text="Unlabeled">
 					<Size y="15" />
 					<Anchors>
@@ -31,7 +28,6 @@
 				<Scale parentKey="Checkmark" childKey="Checkmark" fromScaleX="0.7" toScaleX="1.5" smoothing="NONE" fromScaleY="0.7" toScaleY="1.5" Duration="0.6" order="0"/>
 			</AnimationGroup>
 		</Animations>
-		
 		<Scripts>
 			<OnLoad inherit="prepend">
 				self.Label:SetText(self.label or "");
@@ -43,9 +39,11 @@
 					self.CheckAnim:Stop();
 					self.CheckAnim:Play();
 					PlaySound(SOUNDKIT.TUTORIAL_POPUP);
-					<!-- Delay until next frame or it will prevent the actual copy -->
+					
+				<!-- Delay until next frame or it will prevent the actual copy -->
 					C_Timer.After(0, function() self:ClearFocus(); end);
 				end
+			
 			</OnKeyDown>
 			<OnTextChanged>
 				if (userInput) then
@@ -57,11 +55,9 @@
 			</OnTextChanged>
 		</Scripts>
 	</EditBox>
-	
-	<Frame name="WQT_CopyBoxMultilineTemplate" inherits="BackdropTemplate" virtual="true"> 
+	<Frame name="WQT_CopyBoxMultilineTemplate" inherits="BackdropTemplate" virtual="true">
 		<Layers>
 			<Layer level="ARTWORK">
-				
 				<FontString parentKey="Label" inherits="GameFontWhiteSmall" justifyH="LEFT" text="Unlabeled">
 					<Size y="15" />
 					<Anchors>
@@ -104,9 +100,11 @@
 							parent.CheckAnim:Stop();
 							parent.CheckAnim:Play();
 							PlaySound(SOUNDKIT.TUTORIAL_POPUP);
-							<!-- Delay until next frame or it will prevent the actual copy -->
+							
+						<!-- Delay until next frame or it will prevent the actual copy -->
 							C_Timer.After(0, function() self:ClearFocus(); end);
 						end
+					
 					</OnKeyDown>
 					<OnEscapePressed function="EditBox_ClearFocus"/>
 					<OnEditFocusGained inherit="prepend">
@@ -138,7 +136,6 @@
 			</OnLoad>
 		</Scripts>
 	</Frame>
-	
 	<Frame name="WQT_DebugFrame" mixin="WQT_DebugFrameMixin" parent="UIParent" frameStrata="high" enableMouse="true" hidden="true">
 		<Size x="257" y="462"/>
 		<Anchors>
@@ -150,7 +147,6 @@
 					<TexCoords left="0" right="0.8984375" top="0" bottom="0.5986328125"/>
 				</Texture>
 			</Layer>
-			
 			<Layer level="ARTWORK">
 				<FontString parentKey="Title" inherits="Fancy24Font" justifyH="LEFT" text="WQT Debug Dump">
 					<Anchors>
@@ -160,7 +156,6 @@
 				</FontString>
 			</Layer>
 		</Layers>
-		
 		<Frames>
 			<Button parentKey="CloseButton" hidden="false">
 				<Size x="20" y="20"/>
@@ -215,8 +210,7 @@
 					<Anchor point="RIGHT" relativeKey="$parent.CurseURL"/>
 				</Anchors>
 			</EditBox>
-			
-			<Frame parentKey="DumpFrame" inherits="WQT_CopyBoxMultilineTemplate"> 
+			<Frame parentKey="DumpFrame" inherits="WQT_CopyBoxMultilineTemplate">
 				<KeyValues>
 					<KeyValue key="label" value="Copy paste this" type="string"/>
 				</KeyValues>
@@ -227,7 +221,6 @@
 				</Anchors>
 			</Frame>
 		</Frames>
-		
 		<Scripts>
 			<OnLoad method="OnLoad"/>
 			<OnShow>
@@ -238,4 +231,4 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
- </Ui>
+</Ui>

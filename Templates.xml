@@ -1,9 +1,8 @@
-﻿<Ui xmlns="http://www.blizzard.com/wow/ui/"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+﻿<Ui
+	xmlns="http://www.blizzard.com/wow/ui/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ../../FrameXML/UI.xsd">
-
 	<Script file="Templates.lua"/>
-	
 	<!--
 		Constom Fonts
 	-->
@@ -59,7 +58,6 @@
 			</Font>
 		</Member>
 	</FontFamily>
-	
 	<FontFamily name="WQT_NumberFontOutlineBig" virtual="true">
 		<Member alphabet="roman">
 			<Font font="Fonts\FRIZQT__.TTF" height="25" outline="NORMAL">
@@ -112,13 +110,11 @@
 			</Font>
 		</Member>
 	</FontFamily>
-	
 	<!--
 		Container Buttons and Frames
 	-->
-	
 	<Button name="WQT_ContainerButtonTemplate" mixin="WQT_ContainerButtonMixin" virtual="true">
-		<Size x="32" y="32"/> 
+		<Size x="32" y="32"/>
 		<Layers>
 			<Layer level="BACKGROUND" textureSubLevel="-1">
 				<Texture atlas="MapCornerShadow-Right" useAtlasSize="true" hidden="true">
@@ -166,10 +162,10 @@
 					<Size x="37" y="37"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.Border" x="-2" y="1"/>
-					</Anchors>					
+					</Anchors>
 				</Texture>
-                <Texture parentKey="Glow" file="Interface\Minimap\UI-Minimap-ZoomButton-Toggle" alphaMode="ADD">
-                    <Size x="37" y="37"/>
+				<Texture parentKey="Glow" file="Interface\Minimap\UI-Minimap-ZoomButton-Toggle" alphaMode="ADD">
+					<Size x="37" y="37"/>
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.Border" x="-2" y="1"/>
 					</Anchors>
@@ -179,14 +175,13 @@
 		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
 		<Scripts>
 			<OnClick method="OnClick"/>
-            <OnShow method="OnShow"/>
+			<OnShow method="OnShow"/>
 			<OnEnter method="OnEnter"/>
 			<OnLeave method="OnLeave"/>
 			<OnMouseUp method="OnMouseUp"/>
 			<OnMouseDown method="OnMouseDown"/>
 		</Scripts>
 	</Button>
-	
 	<Frame name="WQT_ContainerTemplate" virtual="true" inherits="BackdropTemplate">
 		<Size x="345" y="518"/>
 		<Scripts>
@@ -211,7 +206,6 @@
 			</Frame>
 		</Frames>
 	</Frame>
-	
 	<Frame name="WQT_MiniIconTemplate" flattenRenderLayers="true" mixin="WQT_MiniIconMixin" virtual="true">
 		<Size x="16" y="16" />
 		<Layers>
