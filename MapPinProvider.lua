@@ -41,12 +41,12 @@ local function SortPinsByMapPos(a, b)
         end
     end
 
-    return a.questId < b.questId
+    return a.questID < b.questID
 end
 
 local function OnPinRelease(pool, pin)
     pin:ClearFocus()
-    pin.questId = nil
+    pin.questID = nil
     pin.nudgeX = 0
     pin.nudgeY = 0
     pin.updateTime = 0
@@ -87,7 +87,7 @@ local function ShouldShowPin(
         -- Show only if tracked
         if
             (settingsPinContinent == _V["ENUM_PIN_CONTINENT"].tracked and
-                not C_QuestLog.GetQuestWatchType(questInfo.questId))
+                not C_QuestLog.GetQuestWatchType(questInfo.questID))
          then
             return false
         end
@@ -97,7 +97,7 @@ local function ShouldShowPin(
             return false
         end
         -- Show only if tracked
-        if (settingsZoneVisible == _V["ENUM_PIN_ZONE"].tracked and not C_QuestLog.GetQuestWatchType(questInfo.questId)) then
+        if (settingsZoneVisible == _V["ENUM_PIN_ZONE"].tracked and not C_QuestLog.GetQuestWatchType(questInfo.questID)) then
             return false
         end
     end
@@ -238,7 +238,7 @@ function WQT_PinDataProvider:PlacePins()
             if (wqp.focusedQuestID) then
                 officialShow =
                     C_QuestLog.IsQuestCalling(wqp.focusedQuestID) and
-                    wqp:ShouldSupertrackHighlightInfo(questInfo.questId)
+                    wqp:ShouldSupertrackHighlightInfo(questInfo.questID)
             end
 
             if
@@ -253,7 +253,7 @@ function WQT_PinDataProvider:PlacePins()
                     ))
              then
                 local pinType = GetPinType(mapInfo.mapType)
-                local posX, posY = WQT_Utils:GetQuestMapLocation(questInfo.questId, mapID)
+                local posX, posY = WQT_Utils:GetQuestMapLocation(questInfo.questID, mapID)
                 if (posX and posX > 0 and posY > 0) then
                     local pin = self.pinPool:Acquire()
                     pin:SetParent(canvas)
@@ -354,7 +354,7 @@ function WQT_PinDataProvider:FixOverlaps(canvas)
                 local bX, bY = b:GetPosition()
                 -- Don't calculate same position or missing position
                 if (not aX or not bX or (aX == bX and aY == bY)) then
-                    return a.questId < b.questId
+                    return a.questID < b.questID
                 end
 
                 -- Keep in mind Y axis is inverse
@@ -420,7 +420,7 @@ function WQT_PinDataProvider:UpdateQuestPings()
 
     if (fadeOthers) then
         for pin in self.pinPool:EnumerateActive() do
-            if (not self.pingedQuests[pin.questId]) then
+            if (not self.pingedQuests[pin.questID]) then
                 pin:FadeOut()
             end
         end
@@ -440,7 +440,7 @@ function WQT_PinDataProvider:UpdateQuestPings()
                     end
 
                     for pin in self.pinPool:EnumerateActive() do
-                        if (not self.pingedQuests[pin.questId]) then
+                        if (not self.pingedQuests[pin.questID]) then
                             if (pin.isFaded) then
                                 pin:FadeIn()
                             end
@@ -453,11 +453,11 @@ function WQT_PinDataProvider:UpdateQuestPings()
     end
 end
 
-function WQT_PinDataProvider:SetQuestIDPinged(questId, shouldPing)
-    if (not questId) then
+function WQT_PinDataProvider:SetQuestIDPinged(questID, shouldPing)
+    if (not questID) then
         return
     end
-    self.pingedQuests[questId] = shouldPing or nil
+    self.pingedQuests[questID] = shouldPing or nil
 
     -- Official pins
     if (WQT_Utils:GetSetting("pin", "disablePoI")) then
@@ -467,13 +467,13 @@ function WQT_PinDataProvider:SetQuestIDPinged(questId, shouldPing)
         if (WorldMapFrame:IsShown()) then
             local WQProvider = WQT_Utils:GetMapWQProvider()
             if (WQProvider) then
-                WQProvider:PingQuestID(questId)
+                WQProvider:PingQuestID(questID)
             end
         end
         if (FlightMapFrame and FlightMapFrame:IsShown()) then
             local FlightWQProvider = WQT_Utils:GetFlightWQProvider()
             if (FlightWQProvider) then
-                FlightWQProvider:PingQuestID(questId)
+                FlightWQProvider:PingQuestID(questID)
             end
         end
 
@@ -482,7 +482,7 @@ function WQT_PinDataProvider:SetQuestIDPinged(questId, shouldPing)
 
     -- Custom pins
     for pin in self.pinPool:EnumerateActive() do
-        if (pin.questId == questId) then
+        if (pin.questID == questID) then
             if (shouldPing) then
                 pin:Focus(true)
             else
@@ -561,12 +561,12 @@ function WQT_PinMixin:SetIconsDesaturated(desaturate)
 end
 
 function WQT_PinMixin:Setup(questInfo, index, x, y, pinType, parentMapFrame)
-    local isWatched = QuestUtils_IsQuestWatched(questInfo.questId)
+    local isWatched = QuestUtils_IsQuestWatched(questInfo.questID)
     self:SetupCanvasType(pinType, parentMapFrame, isWatched)
 
     self.index = index
     self.questInfo = questInfo
-    self.questId = questInfo.questId
+    self.questID = questInfo.questID
 
     local scale = WQT_Utils:GetSetting("pin", "scale")
 
@@ -597,7 +597,7 @@ function WQT_PinMixin:UpdateVisuals()
     local questType = tagInfo and tagInfo.worldQuestType
     local isDisliked = questInfo:IsDisliked()
     local typeAtlas, typeAtlasWidth, typeAtlasHeight = WQT_Utils:GetCachedTypeIconData(questInfo)
-    local isWatched = QuestUtils_IsQuestWatched(questInfo.questId)
+    local isWatched = QuestUtils_IsQuestWatched(questInfo.questID)
     local hasWarbandBonus = questInfo:HasWarbandBonus()
 
     -- Ring coloration
@@ -733,7 +733,7 @@ function WQT_PinMixin:UpdateVisuals()
         self.Icon:SetTexCoord(0, 1, 0, 1)
     elseif (settingCenterType == _V["PIN_CENTER_TYPES"].blizzard) then
         self.CustomTypeIcon:SetShown(true)
-        local selected = questInfo.questId == C_SuperTrack.GetSuperTrackedQuestID()
+        local selected = questInfo.questID == C_SuperTrack.GetSuperTrackedQuestID()
         local showSlectedGlow = tagInfo and questQuality ~= Enum.WorldQuestQuality.Common and selected
         local selectedBountyOnly = WQT_Utils:GetSetting("general", "bountySelectedOnly")
 
@@ -772,7 +772,7 @@ function WQT_PinMixin:UpdateVisuals()
         -- Add inner circle for callings
         self.InnerGlow:SetShown(questInfo:IsQuestOfType(WQT_QUESTTYPE.calling))
     elseif (settingCenterType == _V["PIN_CENTER_TYPES"].faction) then
-        local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questId)
+        local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questID)
         local factionData = WQT_Utils:GetFactionDataInternal(factionId)
         self.Icon:SetTexture(factionData.texture)
     elseif (settingCenterType == _V["PIN_CENTER_TYPES"].none) then
@@ -910,8 +910,8 @@ function WQT_PinMixin:OnEnter()
     if (self.questInfo) then
         WQT_Utils:ShowQuestTooltip(self, self.questInfo)
         -- Highlight quest in list
-        if (self.questId ~= WQT_QuestScrollFrame.PoIHoverId) then
-            WQT_QuestScrollFrame.PoIHoverId = self.questId
+        if (self.questID ~= WQT_QuestScrollFrame.PoIHoverId) then
+            WQT_QuestScrollFrame.PoIHoverId = self.questID
             WQT_QuestScrollFrame:DisplayQuestList()
         end
     end
@@ -942,7 +942,7 @@ function WQT_PinMixin:ApplyScaledPosition(manualScale)
 end
 
 function WQT_PinMixin:Focus(playPing)
-    if (not self.questId) then
+    if (not self.questID) then
         return
     end
     local canvas = self:GetParent()
@@ -971,7 +971,7 @@ function WQT_PinMixin:Focus(playPing)
 end
 
 function WQT_PinMixin:ClearFocus()
-    if (not self.questId) then
+    if (not self.questID) then
         return
     end
     self:SetAlpha(self.currentAlpha)

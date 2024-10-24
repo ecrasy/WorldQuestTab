@@ -1331,14 +1331,14 @@ _V["SETTING_LIST"] = {
     },
      --
     --[[,{["template"] = "WQT_SettingCheckboxTemplate", ["categoryID"] = "MAPPINS", ["label"] = _L["PIN_SHOW_CONTINENT"], ["tooltip"] = _L["PIN_SHOW_CONTINENT_TT"]
-	, ["valueChangedFunc"] = function(value) 
-	WQT.settings.pin.continentPins = value;
-	WQT_WorldQuestFrame.pinDataProvider:RefreshAllData();
-	end
-	,["getValueFunc"] = function() return WQT.settings.pin.continentPins end
-	,["isDisabled"] = function() return WQT.settings.pin.disablePoI end
-	}
-	]] -- Pin appearance
+			, ["valueChangedFunc"] = function(value) 
+				WQT.settings.pin.continentPins = value;
+				WQT_WorldQuestFrame.pinDataProvider:RefreshAllData();
+			end
+			,["getValueFunc"] = function() return WQT.settings.pin.continentPins end
+			,["isDisabled"] = function() return WQT.settings.pin.disablePoI end
+			}
+			]] -- Pin appearance
     {["template"] = " WQT_SettingSubTitleTemplate", ["categoryID"] = "MAPPINS", ["label"] = APPEARANCE_LABEL},
     {
         ["template"] = "WQT_SettingCheckboxTemplate",
@@ -1549,17 +1549,17 @@ _V["SETTING_LIST"] = {
 }
 
 --[[_V["SETTING_UTILITIES_LIST"] = {
-{["template"] = "WQT_SettingCheckboxTemplate", ["categoryID"] = "WQTU", ["label"] = _L["LOAD_UTILITIES"], ["tooltip"] = _L["LOAD_UTILITIES_TT"], ["disabledTooltip"] = _L["LOAD_UTILITIES_TT_DISABLED"]
-, ["valueChangedFunc"] = function(value) 
-WQT.settings.general.loadUtilities = value;
-if (value and not IsAddOnLoaded("WorldQuestTabUtilities")) then
-LoadAddOn("WorldQuestTabUtilities");
-WQT_QuestScrollFrame:UpdateQuestList();
-end
-end
-,["getValueFunc"] = function() return WQT.settings.general.loadUtilities end
-,["isDisabled"] = function() return GetAddOnEnableState(nil, "WorldQuestTabUtilities") == 0 end
-}	
+	{["template"] = "WQT_SettingCheckboxTemplate", ["categoryID"] = "WQTU", ["label"] = _L["LOAD_UTILITIES"], ["tooltip"] = _L["LOAD_UTILITIES_TT"], ["disabledTooltip"] = _L["LOAD_UTILITIES_TT_DISABLED"]
+			, ["valueChangedFunc"] = function(value) 
+				WQT.settings.general.loadUtilities = value;
+				if (value and not IsAddOnLoaded("WorldQuestTabUtilities")) then
+					LoadAddOn("WorldQuestTabUtilities");
+					WQT_QuestScrollFrame:UpdateQuestList();
+				end
+			end
+			,["getValueFunc"] = function() return WQT.settings.general.loadUtilities end
+			,["isDisabled"] = function() return GetAddOnEnableState(nil, "WorldQuestTabUtilities") == 0 end
+			}	
 }]]
 _V["TIME_REMAINING_CATEGORY"] = {
     ["none"] = 0,
@@ -1720,10 +1720,10 @@ _V["SORT_FUNCTIONS"] = {
             local aType = a:GetRewardType()
             local bType = b:GetRewardType()
             local bonus = C_PvP.GetWarModeRewardBonus() / 100
-            if (_V["WARMODE_BONUS_REWARD_TYPES"][aType] and C_QuestLog.QuestHasWarModeBonus(a.questId)) then
+            if (_V["WARMODE_BONUS_REWARD_TYPES"][aType] and C_QuestLog.QuestHasWarModeBonus(a.questID)) then
                 amountA = amountA + floor(amountA * bonus)
             end
-            if (_V["WARMODE_BONUS_REWARD_TYPES"][bType] and C_QuestLog.QuestHasWarModeBonus(b.questId)) then
+            if (_V["WARMODE_BONUS_REWARD_TYPES"][bType] and C_QuestLog.QuestHasWarModeBonus(b.questID)) then
                 amountB = amountB + floor(amountB * bonus)
             end
         end
@@ -1740,8 +1740,8 @@ _V["SORT_FUNCTIONS"] = {
         end
     end,
     ["faction"] = function(a, b)
-        local _, factionIdA = C_TaskQuest.GetQuestInfoByQuestID(a.questId)
-        local _, factionIdB = C_TaskQuest.GetQuestInfoByQuestID(b.questId)
+        local _, factionIdA = C_TaskQuest.GetQuestInfoByQuestID(a.questID)
+        local _, factionIdB = C_TaskQuest.GetQuestInfoByQuestID(b.questID)
         if (factionIdA ~= factionIdB) then
             local factionA = WQT_Utils:GetFactionDataInternal(factionIdA)
             local factionB = WQT_Utils:GetFactionDataInternal(factionIdB)
@@ -1773,8 +1773,8 @@ _V["SORT_FUNCTIONS"] = {
         end
     end,
     ["title"] = function(a, b)
-        local titleA = C_TaskQuest.GetQuestInfoByQuestID(a.questId)
-        local titleB = C_TaskQuest.GetQuestInfoByQuestID(b.questId)
+        local titleA = C_TaskQuest.GetQuestInfoByQuestID(a.questID)
+        local titleB = C_TaskQuest.GetQuestInfoByQuestID(b.questID)
         if (titleA ~= titleB) then
             return titleA < titleB
         end
@@ -1796,8 +1796,8 @@ _V["SORT_FUNCTIONS"] = {
         end
     end,
     ["zone"] = function(a, b)
-        local mapInfoA = WQT_Utils:GetMapInfoForQuest(a.questId)
-        local mapInfoB = WQT_Utils:GetMapInfoForQuest(b.questId)
+        local mapInfoA = WQT_Utils:GetMapInfoForQuest(a.questID)
+        local mapInfoB = WQT_Utils:GetMapInfoForQuest(b.questID)
         if (mapInfoA and mapInfoA.name and mapInfoB and mapInfoB.name and mapInfoA.mapID ~= mapInfoB.mapID) then
             if
                 (WQT.settings.list.alwaysAllQuests and
@@ -1903,7 +1903,7 @@ _V["FILTER_FUNCTIONS"] = {
             return questInfo.isDaily
         end,
         ["Threat"] = function(questInfo, tagInfo)
-            return C_QuestLog.IsThreatQuest(questInfo.questId)
+            return C_QuestLog.IsThreatQuest(questInfo.questID)
         end,
         ["Bonus"] = function(questInfo, tagInfo)
             return not tagInfo
@@ -2275,6 +2275,13 @@ end
 
 -- This is just easier to maintain than changing the entire string every time
 _V["PATCH_NOTES"] = {
+    {
+        ["version"] = "11.0.5",
+        ["intro"] = {"Update for 11.0.5"},
+        ["fixes"] = {
+            "Fixed alot of lua errors."
+        }
+    },
     {
         ["version"] = "11.0.2.13",
         ["fixes"] = {

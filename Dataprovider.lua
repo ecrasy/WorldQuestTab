@@ -120,13 +120,13 @@ end
 
 local QuestInfoMixin = {}
 
-function WQT_Utils:QuestCreationFunc(questId)
+function WQT_Utils:QuestCreationFunc(questID)
     local questInfo = CreateFromMixins(QuestInfoMixin)
     questInfo:OnCreate()
 
     local hasRewardData = false
-    if (questId) then
-        hasRewardData = questInfo:Init(questId)
+    if (questID) then
+        hasRewardData = questInfo:Init(questID)
     end
 
     return questInfo, hasRewardData
@@ -156,15 +156,15 @@ local function IsRewardWarbandBonus(rewardInfo)
     return false
 end
 
-function QuestInfoMixin:Init(questId, isDaily, isCombatAllyQuest, alwaysHide, posX, posY)
-    self.questId = questId
+function QuestInfoMixin:Init(questID, isDaily, isCombatAllyQuest, alwaysHide, posX, posY)
+    self.questID = questID
     self.isDaily = isDaily
     self.isAllyQuest = isCombatAllyQuest
     self.alwaysHide = alwaysHide
     self:SetMapPos(posX, posY)
-    self.tagInfo = C_QuestLog.GetQuestTagInfo(questId)
+    self.tagInfo = C_QuestLog.GetQuestTagInfo(questID)
 
-    self.isValid = HaveQuestData(self.questId)
+    self.isValid = HaveQuestData(self.questID)
     self.time.seconds = WQT_Utils:GetQuestTimeString(self) -- To check if expired or never had a time limit
     self.passedFilter = true
 
@@ -173,16 +173,16 @@ function QuestInfoMixin:Init(questId, isDaily, isCombatAllyQuest, alwaysHide, po
     if (isDaily) then
         self.typeBits = bit.bor(self.typeBits, WQT_QUESTTYPE.daily)
     end
-    if (C_QuestLog.IsThreatQuest(self.questId)) then
+    if (C_QuestLog.IsThreatQuest(self.questID)) then
         self.typeBits = bit.bor(self.typeBits, WQT_QUESTTYPE.threat)
     end
-    if (C_QuestLog.IsQuestCalling(self.questId)) then
+    if (C_QuestLog.IsQuestCalling(self.questID)) then
         self.typeBits = bit.bor(self.typeBits, WQT_QUESTTYPE.calling)
     end
     if (isCombatAllyQuest) then
         self.typeBits = bit.bor(self.typeBits, WQT_QUESTTYPE.combatAlly)
     end
-    if (QuestUtils_IsQuestBonusObjective(self.questId)) then
+    if (QuestUtils_IsQuestBonusObjective(self.questID)) then
         self.typeBits = bit.bor(self.typeBits, WQT_QUESTTYPE.bonus)
     end
 
@@ -226,13 +226,13 @@ function QuestInfoMixin:LoadRewards(force)
     end
 
     wipe(self.rewardList)
-    local haveData = HaveQuestRewardData(self.questId)
+    local haveData = HaveQuestRewardData(self.questID)
     if (haveData) then
         self.reward.typeBits = WQT_REWARDTYPE.none
 
         -- Items
-        if (GetNumQuestLogRewards(self.questId) > 0) then
-            local _, texture, numItems, quality, _, rewardId, ilvl = GetQuestLogRewardInfo(1, self.questId)
+        if (GetNumQuestLogRewards(self.questID) > 0) then
+            local _, texture, numItems, quality, _, rewardId, ilvl = GetQuestLogRewardInfo(1, self.questID)
 
             if (rewardId) then
                 local price, typeID, subTypeID = select(11, GetItemInfo(rewardId))
@@ -240,7 +240,7 @@ function QuestInfoMixin:LoadRewards(force)
                 if (C_Soulbinds.IsItemConduitByItemInfo(rewardId)) then
                     -- Conduits
                     -- Lovely yikes on getting the type
-                    local conduitType = ScanTooltipRewardForPattern(self.questId, "(.+)") or ""
+                    local conduitType = ScanTooltipRewardForPattern(self.questID, "(.+)") or ""
                     local subType = _V["CONDUIT_SUBTYPE"].endurance
                     if (conduitType == CONDUIT_TYPE_FINESSE) then
                         subType = _V["CONDUIT_SUBTYPE"].finesse
@@ -259,7 +259,7 @@ function QuestInfoMixin:LoadRewards(force)
                     )
                 elseif (typeID == 4 or typeID == 2) then
                     -- Gear (4 = armor, 2 = weapon)
-                    local canUpgrade = ScanTooltipRewardForPattern(self.questId, "(%d+%+)$") and true or false
+                    local canUpgrade = ScanTooltipRewardForPattern(self.questID, "(%d+%+)$") and true or false
                     local rewardType = typeID == 4 and WQT_REWARDTYPE.equipment or WQT_REWARDTYPE.weapon
                     local color =
                         typeID == 4 and WQT_Utils:GetColor(_V["COLOR_IDS"].rewardArmor) or
@@ -268,7 +268,7 @@ function QuestInfoMixin:LoadRewards(force)
                 elseif (typeID == 3 and subTypeID == 11) then
                     -- Relics
                     -- Find upgrade amount as C_ArtifactUI.GetItemLevelIncreaseProvidedByRelic doesn't scale
-                    local numItems = tonumber(ScanTooltipRewardForPattern(self.questId, "^%+(%d+)"))
+                    local numItems = tonumber(ScanTooltipRewardForPattern(self.questID, "^%+(%d+)"))
                     self:AddReward(
                         WQT_REWARDTYPE.relic,
                         numItems,
@@ -279,7 +279,7 @@ function QuestInfoMixin:LoadRewards(force)
                     )
                 elseif (C_Item.IsAnimaItemByID(rewardId)) then
                     -- Anima
-                    local value = ScanTooltipRewardForPattern(self.questId, " (%d+) ") or 1
+                    local value = ScanTooltipRewardForPattern(self.questID, " (%d+) ") or 1
                     value = tonumber(value)
 
                     if (WQT.settings.general.sl_genericAnimaIcons) then
@@ -345,10 +345,10 @@ function QuestInfoMixin:LoadRewards(force)
         end
 
         -- Spells
-        if (C_QuestInfoSystem.HasQuestRewardSpells(self.questId)) then
-            local spellRewards = C_QuestInfoSystem.GetQuestRewardSpells(self.questId)
+        if (C_QuestInfoSystem.HasQuestRewardSpells(self.questID)) then
+            local spellRewards = C_QuestInfoSystem.GetQuestRewardSpells(self.questID)
             for _, spellID in ipairs(spellRewards) do
-                local spellInfo = C_QuestInfoSystem.GetQuestRewardSpellInfo(self.questId, spellID)
+                local spellInfo = C_QuestInfoSystem.GetQuestRewardSpellInfo(self.questID, spellID)
                 local knownSpell = IsSpellKnownOrOverridesKnown(spellID)
                 -- only allow the spell reward if user can learn it
                 if
@@ -369,19 +369,19 @@ function QuestInfoMixin:LoadRewards(force)
         end
 
         -- Honor
-        if (GetQuestLogRewardHonor(self.questId) > 0) then
-            local numItems = GetQuestLogRewardHonor(self.questId)
+        if (GetQuestLogRewardHonor(self.questID) > 0) then
+            local numItems = GetQuestLogRewardHonor(self.questID)
             self:AddReward(WQT_REWARDTYPE.honor, numItems, 1455894, 1, WQT_Utils:GetColor(_V["COLOR_IDS"].rewardHonor))
         end
 
         -- Gold
-        if (GetQuestLogRewardMoney(self.questId) > 0) then
-            local numItems = floor(abs(GetQuestLogRewardMoney(self.questId)))
+        if (GetQuestLogRewardMoney(self.questID) > 0) then
+            local numItems = floor(abs(GetQuestLogRewardMoney(self.questID)))
             self:AddReward(WQT_REWARDTYPE.gold, numItems, 133784, 1, WQT_Utils:GetColor(_V["COLOR_IDS"].rewardGold))
         end
 
         -- Currency
-        local questRewardCurrencyInfo = C_QuestLog.GetQuestRewardCurrencies(self.questId)
+        local questRewardCurrencyInfo = C_QuestLog.GetQuestRewardCurrencies(self.questID)
         for i, currencyInfo in pairs(questRewardCurrencyInfo) do
             if currencyInfo then
                 local currencyID = currencyInfo.currencyID
@@ -410,13 +410,13 @@ function QuestInfoMixin:LoadRewards(force)
             end
         end
 
-        if C_QuestLog.QuestContainsFirstTimeRepBonusForPlayer(self.questId) and not self.hasWarbandBonus then
+        if C_QuestLog.QuestContainsFirstTimeRepBonusForPlayer(self.questID) and not self.hasWarbandBonus then
             self.hasWarbandBonus = true
         end
 
         -- Player experience
-        if (GetQuestLogRewardXP(self.questId) > 0) then
-            local numItems = GetQuestLogRewardXP(self.questId)
+        if (GetQuestLogRewardXP(self.questID) > 0) then
+            local numItems = GetQuestLogRewardXP(self.questID)
             self:AddReward(WQT_REWARDTYPE.xp, numItems, 894556, 1, WQT_Utils:GetColor(_V["COLOR_IDS"].rewardXp))
         end
         self:ParseRewards()
@@ -469,7 +469,7 @@ function QuestInfoMixin:GetReward(index)
 end
 
 function QuestInfoMixin:IsExpired()
-    local timeLeftSeconds = C_TaskQuest.GetQuestTimeLeftSeconds(self.questId) or 0
+    local timeLeftSeconds = C_TaskQuest.GetQuestTimeLeftSeconds(self.questID) or 0
     if self:IsBonusObjective() then
         -- C_TaskQuest.GetQuestTimeLeftSeconds returns 0 if it is a bonus world quest so this always fails
         -- Hardcode the value so next line returns true
@@ -479,8 +479,8 @@ function QuestInfoMixin:IsExpired()
 end
 
 function QuestInfoMixin:SetAsWaypoint()
-    local mapInfo = WQT_Utils:GetMapInfoForQuest(self.questId)
-    local x, y = WQT_Utils:GetQuestMapLocation(self.questId, mapInfo.mapID)
+    local mapInfo = WQT_Utils:GetMapInfoForQuest(self.questID)
+    local x, y = WQT_Utils:GetQuestMapLocation(self.questID, mapInfo.mapID)
     local wayPoint = UiMapPoint.CreateFromCoordinates(mapInfo.mapID, x, y)
     C_Map.SetUserWaypoint(wayPoint)
 end
@@ -562,13 +562,13 @@ function QuestInfoMixin:IsCriteria(forceSingle)
 
     -- Try only selected
     if (forceSingle) then
-        return bountyBoard:IsWorldQuestCriteriaForSelectedBounty(self.questId)
+        return bountyBoard:IsWorldQuestCriteriaForSelectedBounty(self.questID)
     end
 
     -- Try any of them
     if (bountyBoard.bounties) then
         for k, bounty in ipairs(bountyBoard.bounties) do
-            if (C_QuestLog.IsQuestCriteriaForBounty(self.questId, bounty.questID)) then
+            if (C_QuestLog.IsQuestCriteriaForBounty(self.questID, bounty.questID)) then
                 return true
             end
         end
@@ -578,7 +578,7 @@ function QuestInfoMixin:IsCriteria(forceSingle)
 end
 
 function QuestInfoMixin:GetTitle()
-    local title = C_TaskQuest.GetQuestInfoByQuestID(self.questId)
+    local title = C_TaskQuest.GetQuestInfoByQuestID(self.questID)
     return title
 end
 
@@ -587,11 +587,11 @@ function QuestInfoMixin:GetTagInfo()
 end
 
 function QuestInfoMixin:IsDisliked()
-    return WQT_Utils:QuestIsDisliked(self.questId)
+    return WQT_Utils:QuestIsDisliked(self.questID)
 end
 
 function QuestInfoMixin:DataIsValid()
-    return self.questId ~= nil
+    return self.questID ~= nil
 end
 
 function QuestInfoMixin:IsSpecialType()
@@ -720,7 +720,7 @@ function WQT_DataProvider:UpdateWaitingRoom()
 
     for i = #self.waitingRoomRewards, 1, -1 do
         questInfo = self.waitingRoomRewards[i]
-        if (questInfo.questId and HaveQuestRewardData(questInfo.questId)) then
+        if (questInfo.questID and HaveQuestRewardData(questInfo.questID)) then
             questInfo:LoadRewards(true)
             table.remove(self.waitingRoomRewards, i)
             updatedData = true
@@ -842,11 +842,11 @@ function WQT_DataProvider:AddQuest(qInfo)
         return true
     end
 
-    local duplicate = self:FindDuplicate(qInfo.questId)
+    local duplicate = self:FindDuplicate(qInfo.questID)
     -- If there is a duplicate, we don't want to go through all the info again
     if (duplicate) then
         -- Check if the new zone is the 'official' zone, if so, use that one instead
-        if (qInfo.mapID == C_TaskQuest.GetQuestZoneID(qInfo.questId)) then
+        if (qInfo.mapID == C_TaskQuest.GetQuestZoneID(qInfo.questID)) then
             duplicate:SetMapPos(qInfo.x, qInfo.y)
         end
 
@@ -858,17 +858,17 @@ function WQT_DataProvider:AddQuest(qInfo)
 
     -- Dragonflight devs forgot to flagged some tech quests with "MapUtil.ShouldShowTask", and past it in Vol'dun location.
     -- It make Vol'dun's map messy. This should fix it.
-    if (qInfo.questId > 60000) and (qInfo.mapID == 864) then
+    if (qInfo.questID > 60000) and (qInfo.mapID == 864) then
         alwaysHide = true
     end
 
-    local posX, posY = WQT_Utils:GetQuestMapLocation(qInfo.questId, qInfo.mapID)
-    local haveRewardData = questInfo:Init(qInfo.questId, qInfo.isDaily, qInfo.isCombatAllyQuest, alwaysHide, posX, posY)
+    local posX, posY = WQT_Utils:GetQuestMapLocation(qInfo.questID, qInfo.mapID)
+    local haveRewardData = questInfo:Init(qInfo.questID, qInfo.isDaily, qInfo.isCombatAllyQuest, alwaysHide, posX, posY)
 
     -- If we have no data for the quest, don't include them in the waiting room, they are probably messed up
     -- Worst case we do get their data at a later point, it will cause everything to refresh anyway
-    if (not haveRewardData and HaveQuestData(qInfo.questId)) then
-        C_TaskQuest.RequestPreloadRewardData(qInfo.questId)
+    if (not haveRewardData and HaveQuestData(qInfo.questID)) then
+        C_TaskQuest.RequestPreloadRewardData(qInfo.questID)
         tinsert(self.waitingRoomRewards, questInfo)
         return false
     end
@@ -876,9 +876,9 @@ function WQT_DataProvider:AddQuest(qInfo)
     return true
 end
 
-function WQT_DataProvider:FindDuplicate(questId)
+function WQT_DataProvider:FindDuplicate(questID)
     for questInfo, v in self.pool:EnumerateActive() do
-        if (questInfo.questId == questId) then
+        if (questInfo.questID == questID) then
             return questInfo
         end
     end
@@ -902,7 +902,7 @@ function WQT_DataProvider:GetKeyList()
     end
 
     for questInfo, v in self.pool:EnumerateActive() do
-        self.keyList[questInfo.questId] = questInfo
+        self.keyList[questInfo.questID] = questInfo
     end
 
     return self.keyList
@@ -910,7 +910,7 @@ end
 
 function WQT_DataProvider:GetQuestById(id)
     for questInfo in self.pool:EnumerateActive() do
-        if questInfo.questId == id then
+        if questInfo.questID == id then
             return questInfo
         end
     end

@@ -1103,7 +1103,7 @@
 				GameTooltip:Hide();
 			</OnLeave>
 			<OnClick>
-				WQT_WorldQuestFrame:SearchGroup(self.questId);
+				WQT_WorldQuestFrame:SearchGroup(self.questID);
 			</OnClick>
 		</Scripts>
 	</Button>

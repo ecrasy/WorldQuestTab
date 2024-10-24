@@ -1,7 +1,7 @@
 ﻿--
 -- Info structure
 --
--- questId					[number] questId
+-- questID					[number] questID
 -- isAllyQuest				[boolean] is a quest for combat allies (Nazjatar)
 -- isDaily					[boolean] is a daily type quest (Nazjatar & threat quests)
 -- isCriteria				[boolean] is part of currently selected emissary
@@ -45,14 +45,14 @@
 --
 -- For other data use following functions
 --
--- local title, factionId = C_TaskQuest.GetQuestInfoByQuestID(questId);
+-- local title, factionId = C_TaskQuest.GetQuestInfoByQuestID(questID);
 -- local mapInfo = WQT_Utils:GetCachedMapInfo(zoneId); 	| mapInfo = {[mapID] = number, [name] = string, [parenMapID] = number, [mapType] = Enum.UIMapType};
--- local mapInfo = WQT_Utils:GetMapInfoForQuest(questId); 	| Quick function that gets the zoneId from the questId first
+-- local mapInfo = WQT_Utils:GetMapInfoForQuest(questID); 	| Quick function that gets the zoneId from the questID first
 -- local factionInfo = WQT_Utils:GetFactionDataInternal(factionId); 	| factionInfo = {[name] = string, [texture] = string/number, [playerFaction] = string, [expansion] = number}
--- local tagID, tagName, worldQuestType, rarity, isElite, tradeskillLineIndex, displayTimeLeft = GetQuestTagInfo(questId);
+-- local tagID, tagName, worldQuestType, rarity, isElite, tradeskillLineIndex, displayTimeLeft = GetQuestTagInfo(questID);
 -- local texture, sizeX, sizeY = WQT_Utils:GetCachedTypeIconData(worldQuestType, tradeskillLineIndex);
 -- local timeLeftSeconds, timeString, color, timeStringShort, category = WQT_Utils:GetQuestTimeString(questInfo, fullString, unabreviated);
--- local x, y = WQT_Utils:GetQuestMapLocation(questId, mapId); | More up to date position than mapInfo
+-- local x, y = WQT_Utils:GetQuestMapLocation(questID, mapId); | More up to date position than mapInfo
 
 --
 -- Callbacks (WQT_WorldQuestFrame:RegisterCallback(event, func, addonName))
@@ -68,7 +68,7 @@
 -- "ListButtonUpdate"		(button) After a button was updated and shown
 -- "AnchorChanged"			(anchor) After the anchor of the quest list has changed
 -- "MapPinInitialized"		(pin) After a map pin has been fully setup to be shown
--- "WorldQuestCompleted"	(questId, questInfo) When a world quest is completed. questInfo gets cleared shortly after this callback is triggered
+-- "WorldQuestCompleted"	(questID, questInfo) When a world quest is completed. questInfo gets cleared shortly after this callback is triggered
 
 local addonName, addon = ...
 
@@ -518,7 +518,7 @@ local function SortQuestList(a, b, sortID)
     -- Invalid goes to the bottom
     if (not a.isValid or not b.isValid) then
         if (a.isValid == b.isValid) then
-            return a.questId < b.questId
+            return a.questID < b.questID
         end
         return a.isValid and not b.isValid
     end
@@ -526,7 +526,7 @@ local function SortQuestList(a, b, sortID)
     -- Filtered out quests go to the back (for debug view mainly)
     if (not a.passedFilter or not b.passedFilter) then
         if (a.passedFilter == b.passedFilter) then
-            return a.questId < b.questId
+            return a.questID < b.questID
         end
         return a.passedFilter and not b.passedFilter
     end
@@ -543,7 +543,7 @@ local function SortQuestList(a, b, sortID)
     if (not order) then
         order = _emptyTable
         WQT:debugPrint("No sort order for", sortID)
-        return a.questId < b.questId
+        return a.questID < b.questID
     end
 
     for k, criteria in ipairs(order) do
@@ -558,7 +558,7 @@ local function SortQuestList(a, b, sortID)
     end
 
     -- Worst case fallback
-    return a.questId < b.questId
+    return a.questID < b.questID
 end
 
 local function GetNewSettingData(old, default)
@@ -758,7 +758,7 @@ function WQT:InitTrackContextMenu(self)
         return
     end
 
-    local questID = questInfo.questId
+    local questID = questInfo.questID
     local mapInfo = WQT_Utils:GetMapInfoForQuest(questID)
     local tagInfo = questInfo:GetTagInfo()
     local title = C_TaskQuest.GetQuestInfoByQuestID(questID)
@@ -856,8 +856,8 @@ function WQT:InitTrackContextMenu(self)
             WQT_WorldQuestFrame:TriggerCallback("InitTrackDropDown", owner, rootDescription)
 
             --[[button = rootDescription:CreateButton(CANCEL, function ()
-		return MenuResponse.CloseAll;
-		end, true);]]
+					return MenuResponse.CloseAll;
+				end, true);]]
         end
     )
 end
@@ -969,7 +969,7 @@ function WQT:PassesFactionFilter(questInfo, checkPrecise)
     local flags = filter.flags
     local factionNone = filter.misc.none
     local factionOther = filter.misc.other
-    local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questId)
+    local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questID)
     local factionInfo = WQT_Utils:GetFactionDataInternal(factionId)
 
     -- Specific filters (matches all)
@@ -1107,7 +1107,7 @@ function WQT:OnEnable()
                 if (not (block.groupFinderButton) and QuestUtils_IsQuestWorldQuest(questID)) then
                     if (WQT_WorldQuestFrame:ShouldAllowLFG(questID)) and not block.rightEdgeFrame then
                         local button = WQT_WorldQuestFrame.LFGButtonPool:Acquire()
-                        button.questId = questID
+                        button.questID = questID
                         button:SetParent(block)
                         button:ClearAllPoints()
                         local offsetX = (block.rightButton or block.itemButton) and -13 or 6
@@ -1348,7 +1348,7 @@ end
 
 function WQT_ListButtonMixin:OnLeave()
     self.Highlight:Hide()
-    WQT_WorldQuestFrame.pinDataProvider:SetQuestIDPinged(self.questInfo.questId, false)
+    WQT_WorldQuestFrame.pinDataProvider:SetQuestIDPinged(self.questInfo.questID, false)
     WQT_WorldQuestFrame:HideWorldmapHighlight()
     GameTooltip:Hide()
     GameTooltip.ItemTooltip:Hide()
@@ -1366,12 +1366,12 @@ function WQT_ListButtonMixin:OnEnter()
     end
     self.Highlight:Show()
 
-    WQT_WorldQuestFrame.pinDataProvider:SetQuestIDPinged(self.questInfo.questId, true)
-    WQT_WorldQuestFrame:ShowWorldmapHighlight(questInfo.questId)
+    WQT_WorldQuestFrame.pinDataProvider:SetQuestIDPinged(self.questInfo.questID, true)
+    WQT_WorldQuestFrame:ShowWorldmapHighlight(questInfo.questID)
 
     local style = nil
     if (questInfo:IsQuestOfType(WQT_QUESTTYPE.calling)) then
-        if (C_QuestLog.IsOnQuest(questInfo.questId)) then
+        if (C_QuestLog.IsOnQuest(questInfo.questID)) then
             style = _V["TOOLTIP_STYLES"].callingActive
         else
             style = _V["TOOLTIP_STYLES"].callingAvailable
@@ -1442,13 +1442,13 @@ function WQT_ListButtonMixin:Update(questInfo, shouldShowZone)
 
     self:Show()
     self.questInfo = questInfo
-    self.zoneId = C_TaskQuest.GetQuestZoneID(questInfo.questId)
-    self.questId = questInfo.questId
+    self.zoneId = C_TaskQuest.GetQuestZoneID(questInfo.questID)
+    self.questID = questInfo.questID
     local isDisliked = questInfo:IsDisliked()
     self:SetAlpha(isDisliked and 0.75 or 1)
 
     -- Title
-    local title, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questId)
+    local title, factionId = C_TaskQuest.GetQuestInfoByQuestID(questInfo.questID)
 
     if (not questInfo.isValid) then
         title = "|cFFFF0000(Invalid) " .. title
@@ -1486,7 +1486,7 @@ function WQT_ListButtonMixin:Update(questInfo, shouldShowZone)
 
     local zoneName = ""
     if (shouldShowZone) then
-        local mapInfo = WQT_Utils:GetMapInfoForQuest(questInfo.questId)
+        local mapInfo = WQT_Utils:GetMapInfoForQuest(questInfo.questID)
         if (mapInfo) then
             zoneName = mapInfo.name
         end
@@ -1497,7 +1497,7 @@ function WQT_ListButtonMixin:Update(questInfo, shouldShowZone)
     -- Highlight
     local showHighLight =
         self:IsMouseOver() or self.Faction:IsMouseOver() or
-        (WQT_QuestScrollFrame.PoIHoverId and WQT_QuestScrollFrame.PoIHoverId == questInfo.questId)
+        (WQT_QuestScrollFrame.PoIHoverId and WQT_QuestScrollFrame.PoIHoverId == questInfo.questID)
     self.Highlight:SetShown(showHighLight)
 
     -- Faction icon
@@ -1535,11 +1535,11 @@ function WQT_ListButtonMixin:Update(questInfo, shouldShowZone)
     self.Rewards:Reset()
     self.Rewards:SetDesaturated(isDisliked)
     for k, rewardInfo in questInfo:IterateRewards() do
-        self.Rewards:AddRewardByInfo(rewardInfo, C_QuestLog.QuestCanHaveWarModeBonus(self.questId))
+        self.Rewards:AddRewardByInfo(rewardInfo, C_QuestLog.QuestCanHaveWarModeBonus(self.questID))
     end
 
     -- Show border if quest is tracked
-    local isHardWatched = WQT_Utils:QuestIsWatchedManual(questInfo.questId)
+    local isHardWatched = WQT_Utils:QuestIsWatchedManual(questInfo.questID)
     if (isHardWatched) then
         self.TrackedBorder:Show()
     else
@@ -1551,7 +1551,7 @@ end
 
 function WQT_ListButtonMixin:FactionOnEnter(frame)
     self.Highlight:Show()
-    local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(self.questInfo.questId)
+    local _, factionId = C_TaskQuest.GetQuestInfoByQuestID(self.questInfo.questID)
     if (factionId) then
         local factionInfo = WQT_Utils:GetFactionDataInternal(factionId)
         GameTooltip:SetOwner(frame, "ANCHOR_RIGHT", -5, -10)
@@ -1667,8 +1667,8 @@ function WQT_ScrollListMixin:FilterQuestList()
             else
                 -- Official filtering
                 if
-                    QuestUtils_IsQuestWorldQuest(questInfo.questId) or
-                        QuestUtils_IsQuestBonusObjective(questInfo.questId)
+                    QuestUtils_IsQuestWorldQuest(questInfo.questID) or
+                        QuestUtils_IsQuestBonusObjective(questInfo.questID)
                  then
                     passed = BlizFiltering and WorldMap_DoesWorldQuestInfoPassFilters(questInfo) or not BlizFiltering
                     -- Add-on filters
@@ -2023,7 +2023,7 @@ end
 -- 				CORE MIXIN				--
 ------------------------------------------
 --
--- ShowWorldmapHighlight(questId)
+-- ShowWorldmapHighlight(questID)
 -- HideWorldmapHighlight()
 -- TriggerEvent(event, ...)
 -- RegisterCallback(func)
@@ -2078,8 +2078,8 @@ function WQT_CoreMixin:HideOfficialMapPins()
 end
 
 -- Mimics hovering over a zone or continent, based on the zone the map is in
-function WQT_CoreMixin:ShowWorldmapHighlight(questId)
-    local zoneId = C_TaskQuest.GetQuestZoneID(questId)
+function WQT_CoreMixin:ShowWorldmapHighlight(questID)
+    local zoneId = C_TaskQuest.GetQuestZoneID(questID)
     local areaId = WorldMapFrame.mapID
     local coords = _V["WQT_ZONE_MAPCOORDS"][areaId] and _V["WQT_ZONE_MAPCOORDS"][areaId][zoneId]
     local mapInfo = WQT_Utils:GetCachedMapInfo(zoneId)
@@ -2389,10 +2389,10 @@ function WQT_CoreMixin:OnLoad()
     -- Opening quest details
     hooksecurefunc(
         "QuestMapFrame_ShowQuestDetails",
-        function(questId)
+        function(questID)
             self:SelectTab(WQT_TabDetails)
             if QuestMapFrame.DetailsFrame.questID == nil then
-                QuestMapFrame.DetailsFrame.questID = questId
+                QuestMapFrame.DetailsFrame.questID = questID
             end
             -- Anchor to small map in case details were opened through clicking a quest in the obejctive tracker
             WQT_WorldQuestFrame:ChangeAnchorLocation(_V["LIST_ANCHOR_TYPE"].world)
@@ -2488,7 +2488,7 @@ function WQT_CoreMixin:OnLoad()
         "OnHide",
         function()
             WQT_GroupSearch:Hide()
-            WQT_GroupSearch.questId = nil
+            WQT_GroupSearch.questID = nil
             WQT_GroupSearch.title = nil
         end
     )
@@ -2501,12 +2501,12 @@ function WQT_CoreMixin:OnLoad()
                 searchString = searchString:lower()
 
                 if
-                    (WQT_GroupSearch.questId and WQT_GroupSearch.title and
-                        not (searchString:find(WQT_GroupSearch.questId) or
+                    (WQT_GroupSearch.questID and WQT_GroupSearch.title and
+                        not (searchString:find(WQT_GroupSearch.questID) or
                             WQT_GroupSearch.title:lower():find(searchString)))
                  then
                     WQT_GroupSearch.Text:SetText(
-                        _L["FORMAT_GROUP_TYPO"]:format(WQT_GroupSearch.questId, WQT_GroupSearch.title)
+                        _L["FORMAT_GROUP_TYPO"]:format(WQT_GroupSearch.questID, WQT_GroupSearch.title)
                     )
                     WQT_GroupSearch:Show()
                 else
@@ -2530,7 +2530,7 @@ function WQT_CoreMixin:OnLoad()
         function(questID, isFromGreenEyeButton)
             if (isFromGreenEyeButton) then
                 WQT_GroupSearch:Hide()
-                WQT_GroupSearch.questId = nil
+                WQT_GroupSearch.questID = nil
                 WQT_GroupSearch.title = nil
             end
         end
@@ -2548,11 +2548,11 @@ function WQT_CoreMixin:OnLoad()
                 local searchString = LFGListFrame.SearchPanel.SearchBox:GetText()
                 searchString = searchString:lower()
                 if
-                    (WQT_GroupSearch.questId and WQT_GroupSearch.title and
-                        (searchString:find(WQT_GroupSearch.questId) or WQT_GroupSearch.title:lower():find(searchString)))
+                    (WQT_GroupSearch.questID and WQT_GroupSearch.title and
+                        (searchString:find(WQT_GroupSearch.questID) or WQT_GroupSearch.title:lower():find(searchString)))
                  then
                     WQT_GroupSearch.Text:SetText(
-                        _L["FORMAT_GROUP_CREATE"]:format(WQT_GroupSearch.questId, WQT_GroupSearch.title)
+                        _L["FORMAT_GROUP_CREATE"]:format(WQT_GroupSearch.questID, WQT_GroupSearch.title)
                     )
                     WQT_GroupSearch:SetParent(LFGListFrame.EntryCreation.Name)
                     WQT_GroupSearch:SetFrameLevel(LFGListFrame.EntryCreation.Name:GetFrameLevel() + 5)
@@ -2560,7 +2560,7 @@ function WQT_CoreMixin:OnLoad()
                     WQT_GroupSearch:SetPoint("BOTTOMLEFT", LFGListFrame.EntryCreation.Name, "TOPLEFT", -2, 3)
                     WQT_GroupSearch:SetPoint("BOTTOMRIGHT", LFGListFrame.EntryCreation.Name, "TOPRIGHT", -2, 3)
                     WQT_GroupSearch.downArrow = true
-                    WQT_GroupSearch.questId = nil
+                    WQT_GroupSearch.questID = nil
                     WQT_GroupSearch.title = nil
                     WQT_GroupSearch:Hide()
                     WQT_GroupSearch:Show()
@@ -2766,7 +2766,7 @@ function WQT_CoreMixin:SearchGroup(questInfo)
     if (type(questInfo) == "number") then
         id = questInfo
     else
-        id = questInfo.questId
+        id = questInfo.questID
     end
     title = C_TaskQuest.GetQuestInfoByQuestID(id)
 
@@ -2786,7 +2786,7 @@ function WQT_CoreMixin:SearchGroup(questInfo)
         WQT_GroupSearch:Hide()
         WQT_GroupSearch:Show()
 
-        WQT_GroupSearch.questId = id
+        WQT_GroupSearch.questID = id
         WQT_GroupSearch.title = title
     end
 end
@@ -2897,10 +2897,10 @@ function WQT_CoreMixin:PLAYER_REGEN_ENABLED()
     end
 end
 
-function WQT_CoreMixin:QUEST_TURNED_IN(questId)
-    local questInfo = WQT_WorldQuestFrame.dataProvider:GetQuestById(questId)
+function WQT_CoreMixin:QUEST_TURNED_IN(questID)
+    local questInfo = WQT_WorldQuestFrame.dataProvider:GetQuestById(questID)
     if (questInfo) then
-        WQT_WorldQuestFrame:TriggerCallback("WorldQuestCompleted", questId, questInfo)
+        WQT_WorldQuestFrame:TriggerCallback("WorldQuestCompleted", questID, questInfo)
     end
 end
 
