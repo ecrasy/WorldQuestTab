@@ -14,7 +14,7 @@
 --		mapX					[number] x pin position
 --		mapY					[number] y pin position
 -- Reward					[table]
---		typeBits				[bitfield] a combination of flags for all the types of rewards the quest provides. I.e. AP + gold + rep = 2^3 + 2^6 + 2^9 = 584 (1001001000)
+--		typeBits				[bitfield] a combination of flags for all the types of rewards the quest provides. I.e. AP + gold + rep = 2^3 + 2^6 + 2^9 = 584 (1001001000‬)
 -- rewardList				[table] List of rewards sorted by priority and filter settings
 --		iterative list of rewardInfo tables
 --
@@ -689,6 +689,11 @@ local function ConvertOldSettings(version)
         -- Enable warband bonus displays by default
         WQT.db.global.pin.showWarbandBonus = true
         WQT.db.global.list.showWarbandBonus = true
+    end
+
+    if (version < "11.0.5.1") then
+        -- Add new pin option
+        WQT.db.global.pin.optionalLabel = _V["OPTIONAL_LABEL_TYPES"].none
     end
 end
 
@@ -1659,7 +1664,7 @@ function WQT_ScrollListMixin:FilterQuestList()
 
     for k, questInfo in ipairs(self.questList) do
         questInfo.passedFilter = false
-        if questInfo.isValid and questInfo.hasRewardData and not questInfo:IsExpired() then
+        if questInfo.isValid and not questInfo.alwaysHide and questInfo.hasRewardData and not questInfo:IsExpired() then
             local passed = false
             -- Filter passes don't care about anything else
             if (WQT_Utils:QuestIsVIQ(questInfo)) then
@@ -2067,13 +2072,11 @@ function WQT_CoreMixin:HideOfficialMapPins()
         end
 
         -- Bonus world quests
-        if not WQT.db.global.pin.showWarbandBonus then
-            WQT_Utils:ItterateAllBonusObjectivePins(
-                function(pin)
-                    self:TryHideOfficialMapPin(pin)
-                end
-            )
-        end
+        WQT_Utils:ItterateAllBonusObjectivePins(
+            function(pin)
+                self:TryHideOfficialMapPin(pin)
+            end
+        )
     end
 end
 
@@ -2966,9 +2969,11 @@ function WQT_CoreMixin:ShowOverlayFrame(frame)
     frame:SetFrameStrata(blocker:GetFrameStrata())
     frame:Show()
 
-    --WQT_QuestScrollFrame.DetailFrame:Hide();
-
     self.manualCloseOverlay = true
+
+    -- Hide little gear icon
+    self.SettingsButton:Hide()
+    QuestMapFrame.SettingsDropdown:Hide()
 
     -- Hide quest and filter to prevent bleeding through when walking around
     WQT_QuestScrollFrame:Hide()
@@ -2982,9 +2987,11 @@ function WQT_CoreMixin:HideOverlayFrame()
     self:SetCustomEnabled(true)
     blocker:Hide()
     blocker.CurrentOverlayFrame:Hide()
-    --WQT_QuestScrollFrame.DetailFrame:Show();
-
     blocker.CurrentOverlayFrame = nil
+
+    -- Show little gear icon
+    self.SettingsButton:Show()
+    QuestMapFrame.SettingsDropdown:Show()
 
     -- Show everything again
     WQT_QuestScrollFrame:Show()
@@ -3160,3 +3167,4 @@ function WQT_CoreMixin:LoadExternal(external)
         tinsert(addon.externals, external)
     end
 end
+
