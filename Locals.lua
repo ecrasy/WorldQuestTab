@@ -12,7 +12,8 @@ L["ALWAYS_ALL_TT"] = "Always show all quests for the expansion related to the cu
 L["AMOUNT_COLORS"] = "Amount Colors"
 L["AMOUNT_COLORS_TT"] = "Color reward amounts in the quest list based on reward type."
 L["AUTO_EMISARRY"] = "Auto Emissary Only"
-L["AUTO_EMISARRY_TT"] = "Clicking on an emisarry on the world map bounty board, will temporarily enable the 'Emisarry Only' filter."
+L["AUTO_EMISARRY_TT"] =
+    "Clicking on an emisarry on the world map bounty board, will temporarily enable the 'Emisarry Only' filter."
 L["BLIZZARD"] = "Blizzard"
 L["CALLINGS_BOARD"] = "Callings Board"
 L["CALLINGS_BOARD_TT"] = "Add a map overlay for covenant callings similar to the emissary board in previous expansions."
@@ -29,32 +30,43 @@ L["EMISSARY_COUNTER_TT"] = "Add counters to the emissary tabs which indicate you
 L["EMISSARY_REWARD"] = "Emissary Reward Icon"
 L["EMISSARY_REWARD_TT"] = "Adds an icon to the emissary tabs indicating the type of reward it offers."
 L["EMISSARY_SELECTED_ONLY"] = "Selected Emissary Only"
-L["EMISSARY_SELECTED_ONLY_TT"] = "Only mark quests for the currently selected emissary. Turning this off will instead mark quests for any of the active emissaries.Clicking on emissary tabs will still only show quests related to that specific emissary."
+L["EMISSARY_SELECTED_ONLY_TT"] =
+    [=[Only mark quests for the currently selected emissary. Turning this off will instead mark quests for any of the active emissaries.
+Clicking on emissary tabs will still only show quests related to that specific emissary.]=]
 L["FILTER_PINS"] = "Filter Map Pins"
 L["FILTER_PINS_TT"] = "Applies filters to pins on the map."
-L["FORMAT_GROUP_CREATE"] = "Type |cFFFFFFFF%d|r to create a group for this quest. Or type its name: |cFFFFFFFF%s|r. Consider using both so players without add-ons can also find your group."
+L["FORMAT_GROUP_CREATE"] =
+    "Type |cFFFFFFFF%d|r to create a group for this quest. Or type its name: |cFFFFFFFF%s|r. Consider using both so players without add-ons can also find your group."
 L["FORMAT_GROUP_SEARCH"] = "Type |cFFFFFFFF%d|r to search for a group for this quest. Or type its name: |cFFFFFFFF%s|r."
 L["FORMAT_GROUP_TYPO"] = "It appears to have made a typo. Type either |cFFFFFFFF%d|r, or |cFFFFFFFF%s|r."
 L["GENERIC_ANIMA"] = "Matching Anima Textures"
-L["GENERIC_ANIMA_TT"] = "Replace the different anima item textures with matching ones, much like Azerite had. This only affects map icons and the quest list."
+L["GENERIC_ANIMA_TT"] =
+    "Replace the different anima item textures with matching ones, much like Azerite had. This only affects map icons and the quest list."
 L["GOLD_PURSES"] = "Gold Racer's Purses"
 L["GOLD_PURSES_TT"] = "Treat Dragon Racer's Purses as gold rewards."
-L["GROUP_SEARCH_INFO"] = "Blizzard prevents add-ons from automatically looking for a group for the majority of world quests. Because of this, players have to manually fill in the search box."
+L["GROUP_SEARCH_INFO"] =
+    "Blizzard prevents add-ons from automatically looking for a group for the majority of world quests. Because of this, players have to manually fill in the search box."
 L["INCLUDE_DAILIES"] = "Include Dailies"
-L["INCLUDE_DAILIES_TT"] = "Treat certain dailies as world quests. Only affects dailies which Blizzard themselves treats as world quests."
+L["INCLUDE_DAILIES_TT"] =
+    "Treat certain dailies as world quests. Only affects dailies which Blizzard themselves treats as world quests."
 L["LFG_BUTTONS"] = "Enable LFG Buttons"
-L["LFG_BUTTONS_TT"] = "Add LFG buttons to world quests in the objective tracker. Enabling this setting can cause an increase in memory and CPU usage. |cFFFF5555A reload is required for this setting to take effect.|r"
+L["LFG_BUTTONS_TT"] =
+    "Add LFG buttons to world quests in the objective tracker. Enabling this setting can cause an increase in memory and CPU usage. |cFFFF5555A reload is required for this setting to take effect.|r"
 L["LIST_COLOR_TIME"] = "Time Colors"
-L["LIST_COLOR_TIME_TT"] = "Add color coding to times based on the remaining duration. Critital times (< 15 min) will be colored red regardless."
+L["LIST_COLOR_TIME_TT"] =
+    "Add color coding to times based on the remaining duration. Critital times (< 15 min) will be colored red regardless."
 L["LIST_FULL_TIME"] = "Expand Times"
 L["LIST_FULL_TIME_TT"] = "Includes a secondary scale to times, adding hours to days and minutes to hours."
 L["LIST_SETTINGS"] = "List Settings"
 L["LOAD_UTILITIES"] = "Load Utilities"
-L["LOAD_UTILITIES_TT"] = "Load utility features such as tallies and distance sorting.|cFFFF5555A reload is required when disabling this feature.|r"
+L["LOAD_UTILITIES_TT"] =
+    [=[Load utility features such as tallies and distance sorting.
+|cFFFF5555A reload is required when disabling this feature.|r]=]
 L["LOAD_UTILITIES_TT_DISABLED"] = "|cFFFF5555World Quest Tab Utilities is not enabled in your add-on list.|r"
 L["MAP_FILTER_DISABLED"] = "Disabled by world map filters."
 L["MAP_FILTER_DISABLED_BUTTON_INFO"] = "Right click to re-enable this filter"
-L["MAP_FILTER_DISABLED_INFO"] = "You have some filters disabled under the magnifying glass at the top right of the world map. This may hide some quests from the list, and disable some filter options."
+L["MAP_FILTER_DISABLED_INFO"] =
+    "You have some filters disabled under the magnifying glass at the top right of the world map. This may hide some quests from the list, and disable some filter options."
 L["MAP_FILTER_DISABLED_TITLE"] = "Some world map filters are disabled"
 L["MAP_PINS"] = "Map Pins"
 L["MINI_ICONS"] = "Mini Icons"
@@ -75,7 +87,14 @@ L["PIN_ELITE_RING"] = "Elite Ring"
 L["PIN_ELITE_RING_TT"] = "Replace Blizzard's elite dragon with a spiked ring."
 L["PIN_FACTION_TT"] = "Use the faction icon."
 L["PIN_FADE_ON_PING"] = "Fade Irrelevant Pins"
-L["PIN_FADE_ON_PING_TT"] = "Hovering over a quest in the list will fade out other map pins to more easily spot the relevant one."
+L["PIN_FADE_ON_PING_TT"] =
+    "Hovering over a quest in the list will fade out other map pins to more easily spot the relevant one."
+L["PIN_OPTIONAL_LABEL"] = "Optional Label"
+L["PIN_OPTIONAL_LABEL_TT"] = "Add an optional label below the map pin."
+L["PIN_OPTIONAL_NONE_TT"] = "Don't show any label."
+L["PIN_OPTIONAL_AMOUNT"] = "Reward Amount"
+L["PIN_OPTIONAL_AMOUNT_TT"] =
+    "Add a label with the first reward amount based on reward type (gold, item level, reputation, currency, etc)."
 L["PIN_RARITY_ICON"] = "Quest Rarity Icon"
 L["PIN_RARITY_ICON_TT"] = "Add a rarity icon to pins of rare quests."
 L["PIN_REWARD_TT"] = "Use the texture of the main reward."
@@ -101,7 +120,7 @@ L["PIN_SHOW_CONTINENT_TT"] = "Show all quests on continent maps."
 L["PIN_TIME"] = "Time Left Label"
 L["PIN_TIME_ICON"] = "Time Remaining Icon"
 L["PIN_TIME_ICON_TT"] = "Add icon for time remaining, based on time colors."
-L["PIN_TIME_TT"] = "Add a short text label with the remaining duration"
+L["PIN_TIME_TT"] = "Add a short text label with the remaining duration."
 L["PIN_TYPE"] = "Quest Type Icon"
 L["PIN_TYPE_TT"] = "Add a quest type icon to the pin for special quest types."
 L["PIN_VISIBILITY_ALL_TT"] = "Allow map pins for all quests."
@@ -116,13 +135,16 @@ L["PIN_WARBAND_BONUS"] = "Warband bonus icon"
 L["PIN_WARBAND_BONUS_TT"] = "Shows an icon on top of the pin if there is a Warband bonus available."
 L["PLACE_MAP_PIN"] = "Shareable Pin"
 L["PRECISE_FILTER"] = "Precise Filter"
-L["PRECISE_FILTER_TT"] = "Filtering only shows quests matching all filter categories, rather than just any of the categories."
+L["PRECISE_FILTER_TT"] =
+    "Filtering only shows quests matching all filter categories, rather than just any of the categories."
 L["PREVIOUS_EXPANSIONS"] = "Previous Expansions"
 L["PROFILE_NAME"] = "Profile Name"
 L["PROFILE_NAME_TT"] = "Change profile name"
 L["PROFILES"] = "Profiles"
 L["QUEST_COUNTER"] = "Quest Log Counter"
-L["QUEST_COUNTER_INFO"] = "This number is an aproximation as the value from the official API isn't guaranteed to be correct.Some quests might be hidden yet still count."
+L["QUEST_COUNTER_INFO"] =
+    [=[This number is an aproximation as the value from the official API isn't guaranteed to be correct.
+Some quests might be hidden yet still count.]=]
 L["QUEST_COUNTER_TITLE"] = "Quest Log Limit"
 L["QUEST_COUNTER_TT"] = "Show the number of quests in your default quest log."
 L["QUEST_LIST"] = "Quest List"
@@ -163,11 +185,14 @@ L["TIME_SHORT_TT"] = "Times between 15 and 60 minutes."
 L["TIME_VERYLONG"] = "3+ days"
 L["TIME_VERYLONG_TT"] = "Times over 3 days. Typically used for world bosses."
 L["TOMTOM_AUTO_ARROW"] = "Waypoint On Track"
-L["TOMTOM_AUTO_ARROW_TT"] = "Hard tracking a quests by shift clicking, or by using the 'Track' option in the dropdown, will automatically create a TomTom waypoint."
+L["TOMTOM_AUTO_ARROW_TT"] =
+    "Hard tracking a quests by shift clicking, or by using the 'Track' option in the dropdown, will automatically create a TomTom waypoint."
 L["TOMTOM_CLICK_ARROW"] = "Waypoint On Click"
-L["TOMTOM_CLICK_ARROW_TT"] = "Create a TomTom waypoint and arrow for the last clicked world quest. Removes the previous waypoint added in this way."
+L["TOMTOM_CLICK_ARROW_TT"] =
+    "Create a TomTom waypoint and arrow for the last clicked world quest. Removes the previous waypoint added in this way."
 L["TYPE_EMISSARY"] = "Emissary Only"
-L["TYPE_EMISSARY_TT"] = "Show only quests for the currently selected emissary. This filter overwrites all other filters."
+L["TYPE_EMISSARY_TT"] =
+    "Show only quests for the currently selected emissary. This filter overwrites all other filters."
 L["TYPE_INVASION"] = "Invasion"
 L["UNINTERESTED"] = "Uninterested"
 L["UNINTERESTED_TT"] = "Keep quests marked as 'uninterested' in the list."
@@ -185,10 +210,12 @@ if locale == "deDE" then
     L["AMOUNT_COLORS"] = "Betragsfarben"
     L["AMOUNT_COLORS_TT"] = "Färbt die Belohnungsbeträge in der Questliste basierend nach der Belohnungsart ein."
     L["AUTO_EMISARRY"] = "Automatisch nur Abgesandte"
-    L["AUTO_EMISARRY_TT"] = 'Durch klicken auf einen Abgesandten im Abgesandtentab der Weltkarte, wird vorübergehend der Filter "Nur Abgesandte" aktiviert.'
+    L["AUTO_EMISARRY_TT"] =
+        'Durch klicken auf einen Abgesandten im Abgesandtentab der Weltkarte, wird vorübergehend der Filter "Nur Abgesandte" aktiviert.'
     L["BLIZZARD"] = "Blizzard"
     L["CALLINGS_BOARD"] = "Berufungstab"
-    L["CALLINGS_BOARD_TT"] = "Zeige ein Berufungstab für die Pakt Berufungen an, dass ähnlich dem Abgesandtentab aus vorherigen Erweiterungen ist."
+    L["CALLINGS_BOARD_TT"] =
+        "Zeige ein Berufungstab für die Pakt Berufungen an, dass ähnlich dem Abgesandtentab aus vorherigen Erweiterungen ist."
     L["COMBATLOCK"] = "Nicht verfügbar während eines Kampfes."
     L["CONTAINER_DRAG"] = "Bewegen"
     L["CONTAINER_DRAG_TT"] = "An einen anderem Ort platzieren."
@@ -196,36 +223,53 @@ if locale == "deDE" then
     L["CURRENT_PROFILE_TT"] = "Wähle dein aktives Profil aus."
     L["CUSTOM_COLORS"] = "Benutzerdefinierte Farben"
     L["DEFAULT_TAB"] = "Standardtab"
-    L["DEFAULT_TAB_TT"] = "Aktiviert WQT als Standardtab nach dem Einloggen. Nicht aktiv für Charaktere unter Level 110."
+    L["DEFAULT_TAB_TT"] =
+        [=[Aktiviert WQT als Standardtab nach dem Einloggen.
+Nicht aktiv für Charaktere unter Level 110.]=]
     L["EMISSARY_COUNTER"] = "Abgesandtenzähler"
-    L["EMISSARY_COUNTER_TT"] = "Zeige bei den Abgesandten im Abgesandtentab Zähler an, die den Fortschritt für jeden Abgesandten anzeigen."
+    L["EMISSARY_COUNTER_TT"] =
+        "Zeige bei den Abgesandten im Abgesandtentab Zähler an, die den Fortschritt für jeden Abgesandten anzeigen."
     L["EMISSARY_REWARD"] = "Abgesandten Belohnungsicon"
     L["EMISSARY_REWARD_TT"] = "Zeige im Abgesandtentab ein Icon an, das der Art der angebotenen Belohnung entspricht."
     L["EMISSARY_SELECTED_ONLY"] = "Nur ausgewählter Abgesandter"
-    L["EMISSARY_SELECTED_ONLY_TT"] = "Markiert nur Quests für den aktuell ausgewählten Abgesandten. Wenn diese Option deaktiviert ist, werden stattdessen Quests für einen der aktiven Abgesandten markiert. Auf den Abgesandtentab zu klicken, wird weiterhin nur Quests angezeigen, die sich auf diesen bestimmten Abgesandten beziehen."
+    L["EMISSARY_SELECTED_ONLY_TT"] =
+        "Markiert nur Quests für den aktuell ausgewählten Abgesandten. Wenn diese Option deaktiviert ist, werden stattdessen Quests für einen der aktiven Abgesandten markiert. Auf den Abgesandtentab zu klicken, wird weiterhin nur Quests angezeigen, die sich auf diesen bestimmten Abgesandten beziehen."
     L["FILTER_PINS"] = "Kartenpins filtern"
     L["FILTER_PINS_TT"] = "Wende Filter auf die Kartenpins an."
-    L["FORMAT_GROUP_CREATE"] = "Tippe |cFFFFFFFF%d|r ein, um eine Gruppe für diese Quest zu erstellen oder trage den Questtitel '|cFFFFFFFF%s|r' ein. Verwende beides, damit Spieler ohne Addons auch diese Gruppe finden können."
-    L["FORMAT_GROUP_SEARCH"] = "Tippe |cFFFFFFFF%d|r ein, um eine Gruppe für diese Quest zu suchen oder trage den Questtitel '|cFFFFFFFF%s|r' ein."
+    L["FORMAT_GROUP_CREATE"] =
+        "Tippe |cFFFFFFFF%d|r ein, um eine Gruppe für diese Quest zu erstellen oder trage den Questtitel '|cFFFFFFFF%s|r' ein. Verwende beides, damit Spieler ohne Addons auch diese Gruppe finden können."
+    L["FORMAT_GROUP_SEARCH"] =
+        "Tippe |cFFFFFFFF%d|r ein, um eine Gruppe für diese Quest zu suchen oder trage den Questtitel '|cFFFFFFFF%s|r' ein."
     L["FORMAT_GROUP_TYPO"] = "Es scheint einen Tippfehler zu geben. Tippe |cFFFFFFFF%d|r oder |cFFFFFFFF%s|r ein."
     L["GENERIC_ANIMA"] = "Ähnliche Animatexturen"
-    L["GENERIC_ANIMA_TT"] = "Ersetzt die verschiedenen Animaitemtexturen durch eine, ähnlich wie bei Azerit. Dies betrifft nur Kartenicons und die Questliste."
-    L["GROUP_SEARCH_INFO"] = "Blizzard verhindert, dass Addons für die meisten Weltquests automatisch nach einer Gruppe suchen. Aus diesem Grund müssen die Spieler das Suchfeld manuell ausfüllen."
+    L["GENERIC_ANIMA_TT"] =
+        "Ersetzt die verschiedenen Animaitemtexturen durch eine, ähnlich wie bei Azerit. Dies betrifft nur Kartenicons und die Questliste."
+    L["GROUP_SEARCH_INFO"] =
+        "Blizzard verhindert, dass Addons für die meisten Weltquests automatisch nach einer Gruppe suchen. Aus diesem Grund müssen die Spieler das Suchfeld manuell ausfüllen."
     L["INCLUDE_DAILIES"] = "Tägliche Quests mit einbeziehen"
-    L["INCLUDE_DAILIES_TT"] = "Behandle bestimmte Tägliche Quests als Weltquests. Betrifft nur Tägliche Quests, die Blizzard selbst als Weltquests behandelt."
+    L["INCLUDE_DAILIES_TT"] =
+        "Behandle bestimmte Tägliche Quests als Weltquests. Betrifft nur Tägliche Quests, die Blizzard selbst als Weltquests behandelt."
     L["LFG_BUTTONS"] = "Aktiviere LFG Buttons"
-    L["LFG_BUTTONS_TT"] = "Zeige bei den Weltquests im Objekttracker einen LFG Button an. Das Aktivieren dieser Einstellung kann zu einer Erhöhung der Speicher- und CPU-Auslastung führen.|cFFFF5555Damit diese Einstellung wirksam wird, ist ein Neuladen erforderlich.|r"
+    L["LFG_BUTTONS_TT"] =
+        [=[Zeige bei den Weltquests im Objekttracker einen LFG Button an.
+Das Aktivieren dieser Einstellung kann zu einer Erhöhung der Speicher- und CPU-Auslastung führen.
+|cFFFF5555Damit diese Einstellung wirksam wird, ist ein Neuladen erforderlich.|r]=]
     L["LIST_COLOR_TIME"] = "Farben für die Zeit"
-    L["LIST_COLOR_TIME_TT"] = "Zeige bei der Zeit eine Farbkodierung an, basierend auf der verbleibenden Dauer. Kritische Zeiten (<15 min) werden unabhängig davon rot gefärbt."
+    L["LIST_COLOR_TIME_TT"] =
+        "Zeige bei der Zeit eine Farbkodierung an, basierend auf der verbleibenden Dauer. Kritische Zeiten (<15 min) werden unabhängig davon rot gefärbt."
     L["LIST_FULL_TIME"] = "Zeiten erweitern"
     L["LIST_FULL_TIME_TT"] = "Zeige bei Tagen zusätzlich die Stunden an und bei Stunden zusätzlich die Minuten."
     L["LIST_SETTINGS"] = "Listen Einstellungen"
     L["LOAD_UTILITIES"] = "Lade zusätzliche Features"
-    L["LOAD_UTILITIES_TT"] = "Lade zusätzliche Features wie das zusammen zählen von übereinstimmenden Belohungen und einer Distanzsortierung. |cFFFF5555Beim ausschalten dieses Features ist ein Neuladen erforderlich.|r"
+    L["LOAD_UTILITIES_TT"] =
+        [=[Lade zusätzliche Features wie das zusammen zählen von übereinstimmenden Belohungen und einer Distanzsortierung.
+|cFFFF5555Beim ausschalten dieses Features ist ein Neuladen erforderlich.|r]=]
     L["LOAD_UTILITIES_TT_DISABLED"] = "|cFFFF5555World Quest Tab Utilities ist in deiner Addonliste nicht aktiviert.|r"
     L["MAP_FILTER_DISABLED"] = "Durch Weltkartenfilter deaktiviert."
     L["MAP_FILTER_DISABLED_BUTTON_INFO"] = "Klicke mit der rechten Maustaste, um diesen Filter wieder zu aktivieren"
-    L["MAP_FILTER_DISABLED_INFO"] = "Du hast einige Filter bei der Lupe oben rechts auf der Weltkarte deaktiviert. Dies kann einige Quests aus der Liste ausblenden und einige Filteroptionen deaktivieren."
+    L["MAP_FILTER_DISABLED_INFO"] =
+        [=[Du hast einige Filter bei der Lupe oben rechts auf der Weltkarte deaktiviert.
+Dies kann einige Quests aus der Liste ausblenden und einige Filteroptionen deaktivieren.]=]
     L["MAP_FILTER_DISABLED_TITLE"] = "Einige Weltkartenfilter sind deaktiviert"
     L["MAP_PINS"] = "Kartenpins"
     L["MINI_ICONS"] = "Mini Icons"
@@ -282,13 +326,15 @@ if locale == "deDE" then
     L["PIN_VISIBILITY_ZONE_TT"] = "Bei welchen Quests sollen Kartenpins auf den Zonenkarten angezeigt werden?"
     L["PLACE_MAP_PIN"] = "Wegpunkt setzen"
     L["PRECISE_FILTER"] = "Präziser Filter"
-    L["PRECISE_FILTER_TT"] = "Beim Filtern werden nur Quests angezeigt, die allen Filterkategorien entsprechen, und nicht nur einer der Kategorien."
+    L["PRECISE_FILTER_TT"] =
+        "Beim Filtern werden nur Quests angezeigt, die allen Filterkategorien entsprechen, und nicht nur einer der Kategorien."
     L["PREVIOUS_EXPANSIONS"] = "Vorherige Erweiterungen"
     L["PROFILE_NAME"] = "Profilname"
     L["PROFILE_NAME_TT"] = "Profielname ändern."
     L["PROFILES"] = "Profile"
     L["QUEST_COUNTER"] = "Questlogzähler"
-    L["QUEST_COUNTER_INFO"] = "Folgende |cFFFFd100%d|r versteckte Quests zählen zu deinem Questlimit hinzu und können nicht abgebrochen werden. Dies ist ein Problem von Blizzards Seite her."
+    L["QUEST_COUNTER_INFO"] =
+        "Folgende |cFFFFd100%d|r versteckte Quests zählen zu deinem Questlimit hinzu und können nicht abgebrochen werden. Dies ist ein Problem von Blizzards Seite her."
     L["QUEST_COUNTER_TITLE"] = "Versteckte Quests"
     L["QUEST_COUNTER_TT"] = "Zeige die Anzahl der Quests im Standard Questlog an."
     L["QUEST_LIST"] = "Questliste"
@@ -304,7 +350,8 @@ if locale == "deDE" then
     L["REWARD_NUM_DISPLAY_PIN_TT"] = "Zeige die hier eingestellte Menge von Icons basierend nach der Belohnungsart an."
     L["REWARD_NUM_DISPLAY_TT"] = "Wie viele der Questbelohungen sollen angezeigt werden?"
     L["SAVE_SETTINGS"] = "Speichere Filter/Sortierung"
-    L["SAVE_SETTINGS_TT"] = "Speichere Filter- und Sortierungseinstellungen sitzungs- und reloadübergreifend"
+    L["SAVE_SETTINGS_TT"] = [=[Speichere Filter- und Sortierungseinstellungen
+sitzungs- und reloadübergreifend]=]
     L["SHORTCUT_DISLIKE"] = "<Shift + Rechtsklick zum markieren>"
     L["SHORTCUT_TRACK"] = "<Shift + Klick zum verfolgen>"
     L["SHORTCUT_WAYPOINT"] = "<STRG + Klick um einen Wegpunkt zu setzen>"
@@ -327,11 +374,14 @@ if locale == "deDE" then
     L["TIME_VERYLONG"] = "3+ Tage"
     L["TIME_VERYLONG_TT"] = "Zeiten über 3 Tage. Wird normalerweise für Weltbosse verwendet."
     L["TOMTOM_AUTO_ARROW"] = "Wegpunkt beim Verfolgen"
-    L["TOMTOM_AUTO_ARROW_TT"] = "Wenn Quests durch Klicken bei gedrückter Umschalttaste oder mithilfe der Option 'Quest beobachten' in der Dropdown-Liste verfolgt werden, wird automatisch ein TomTom Wegpunkt erstellt."
+    L["TOMTOM_AUTO_ARROW_TT"] =
+        "Wenn Quests durch Klicken bei gedrückter Umschalttaste oder mithilfe der Option 'Quest beobachten' in der Dropdown-Liste verfolgt werden, wird automatisch ein TomTom Wegpunkt erstellt."
     L["TOMTOM_CLICK_ARROW"] = "Wegpunkt beim Klicken"
-    L["TOMTOM_CLICK_ARROW_TT"] = "Erstellt einen TomTom Wegpunkt und Pfeil für die zuletzt angeklickte Weltquest. Entfernt den zuvor auf diese Weise hinzugefügten Wegpunkt."
+    L["TOMTOM_CLICK_ARROW_TT"] =
+        "Erstellt einen TomTom Wegpunkt und Pfeil für die zuletzt angeklickte Weltquest. Entfernt den zuvor auf diese Weise hinzugefügten Wegpunkt."
     L["TYPE_EMISSARY"] = "Nur Abgesandte"
-    L["TYPE_EMISSARY_TT"] = "Zeige nur Quests für den aktuell ausgewählten Abgesandten an. Dieser Filter überschreibt alle anderen Filter."
+    L["TYPE_EMISSARY_TT"] =
+        "Zeige nur Quests für den aktuell ausgewählten Abgesandten an. Dieser Filter überschreibt alle anderen Filter."
     L["TYPE_INVASION"] = "Invasion"
     L["UNINTERESTED"] = "Uninteressant"
     L["UNINTERESTED_TT"] = "Zeige Quests, die als 'Uninteressant' markiert sind weiterhin in der Liste an."
@@ -339,7 +389,9 @@ if locale == "deDE" then
     L["USE_TOMTOM_TT"] = "Füge Funktionen von TomTom zu diesem Addon hinzu."
     L["WHATS_NEW"] = "Was ist neu?"
     L["WHATS_NEW_TT"] = "Zeige die World Quest Tab Patchnotes an."
-    L["WQT_FULLSCREEN_BUTTON_TT"] = "Zeige und Blende die Weltquestliste mit einem Linksklick ein oder aus. Mit einem Rechtsklick kann die Position verschoben werden."
+    L["WQT_FULLSCREEN_BUTTON_TT"] =
+        [=[Zeige und Blende die Weltquestliste mit einem Linksklick ein oder aus.
+Mit einem Rechtsklick kann die Position verschoben werden.]=]
 end
 
 if locale == "esES" or locale == "esMX" then
@@ -348,9 +400,12 @@ end
 if locale == "ptBR" then
     L["COMBATLOCK"] = "Desativado durante combate."
     L["DEFAULT_TAB"] = "Aba Padrão"
-    L["DEFAULT_TAB_TT"] = "Definir o WQT como aba padrão quando você logar. Isso não se aplica a personagens abaixo do nível 110."
+    L["DEFAULT_TAB_TT"] =
+        [=[Definir o WQT como aba padrão quando você logar.
+ Isso não se aplica a personagens abaixo do nível 110.]=]
     L["FILTER_PINS"] = "Filtrar marcações no mapa"
-    L["FILTER_PINS_TT"] = "Aplica filtros às marcações no mapa."
+    L["FILTER_PINS_TT"] = [=[Aplica filtros às
+marcações no mapa.]=]
     L["NO_FACTION"] = "Sem Facção"
     L["NUMBERS_FIRST"] = "%gk"
     L["NUMBERS_SECOND"] = "%gm"
@@ -362,11 +417,14 @@ if locale == "ptBR" then
     L["PIN_TIME"] = "Tempo do marcador"
     L["PIN_TIME_TT"] = "Adicionar tempo restante nos marcadores."
     L["SAVE_SETTINGS"] = "Salvar/Organizar Filtros"
-    L["SAVE_SETTINGS_TT"] = "Salva configurações de filtro e ordenação entre sessões e recarregamentos."
+    L["SAVE_SETTINGS_TT"] = [=[Salva configurações de filtro e ordenação
+entre sessões e recarregamentos.]=]
     L["SHOW_FACTION"] = "Exibir Facção"
-    L["SHOW_FACTION_TT"] = "Exibir ícone da facção na lista de missões."
+    L["SHOW_FACTION_TT"] = [=[Exibir ícone da facção
+na lista de missões.]=]
     L["SHOW_TYPE"] = "Exibir Tipo"
-    L["SHOW_TYPE_TT"] = "Exibe o ícone do tipo na lista de missões."
+    L["SHOW_TYPE_TT"] = [=[Exibe o ícone do tipo
+na lista de missões.]=]
     L["TIME"] = "Tempo"
     L["TYPE_EMISSARY"] = "Emissário"
     L["TYPE_INVASION"] = "Invasão"
@@ -375,14 +433,18 @@ end
 if locale == "frFR" then
     L["COMBATLOCK"] = "Désactivé en combat."
     L["DEFAULT_TAB"] = "Onglet par défaut"
-    L["DEFAULT_TAB_TT"] = "Définir WQT comme onglet par défaut quand vous vous connectez. Ne s'applique pas en dessous du niveau 110."
+    L["DEFAULT_TAB_TT"] =
+        [=[Définir WQT comme onglet par défaut quand vous vous connectez.
+Ne s'applique pas en dessous du niveau 110.]=]
     L["NO_FACTION"] = "Sans faction"
     L["NUMBERS_FIRST"] = "%gk"
     L["NUMBERS_SECOND"] = "%gm"
     L["NUMBERS_THIRD"] = "%gb"
     L["PIN_TIME_TT"] = "Ajouter le temps restant sur les points de la carte."
     L["SAVE_SETTINGS"] = "Sauvegarder Filtres/Tri"
-    L["SAVE_SETTINGS_TT"] = "Sauvegarder les paramètres des filtres et du tri entre les sessions de jeu et les rechargements"
+    L["SAVE_SETTINGS_TT"] =
+        [=[Sauvegarder les paramètres des filtres et du tri 
+entre les sessions de jeu et les rechargements]=]
     L["SHOW_FACTION"] = "Montrer la faction"
     L["SHOW_FACTION_TT"] = "Afficher l'icône de la faction dans la liste de quête."
     L["SHOW_TYPE"] = "Montrer le type"
@@ -398,7 +460,8 @@ end
 if locale == "ruRU" then
     L["COMBATLOCK"] = "Отключено во время боя."
     L["DEFAULT_TAB"] = "По умолчанию"
-    L["DEFAULT_TAB_TT"] = "Установить WQT как панель по умолчанию. Не применяется к персонажам ниже 110 уровня."
+    L["DEFAULT_TAB_TT"] = [=[Установить WQT как панель по умолчанию.
+Не применяется к персонажам ниже 110 уровня.]=]
     L["FILTER_PINS"] = "Фильтр меток"
     L["FILTER_PINS_TT"] = "Применить фильтры к меткaм на карте"
     L["NO_FACTION"] = "Без фрaкции"
@@ -412,9 +475,11 @@ if locale == "ruRU" then
     L["PIN_TIME"] = "Время на метках"
     L["PIN_TIME_TT"] = "Добавить оставшееся время к меткам на карте"
     L["SAVE_SETTINGS"] = "Сохранить фильтры"
-    L["SAVE_SETTINGS_TT"] = "Сохранить настройки фильтров между игровыми сессиями и перезагрузками."
+    L["SAVE_SETTINGS_TT"] = [=[Сохранить настройки фильтров между 
+игровыми сессиями и перезагрузками.]=]
     L["SHOW_FACTION"] = "Показать фракцию"
-    L["SHOW_FACTION_TT"] = "Показать иконку фракции в панели задач."
+    L["SHOW_FACTION_TT"] = [=[Показать иконку фракции
+в панели задач.]=]
     L["SHOW_TYPE"] = "Показaть тип"
     L["SHOW_TYPE_TT"] = "Показать тип иконки в журнале заданий."
     L["TIME"] = "Время"
@@ -435,12 +500,14 @@ if locale == "zhCN" then
     L["CONTAINER_DRAG"] = "移动"
     L["CONTAINER_DRAG_TT"] = "拖拽到其他位置"
     L["DEFAULT_TAB"] = "默认选项卡"
-    L["DEFAULT_TAB_TT"] = "设置WQT作为你登录后的默认选项卡。 不会对110级以下的角色生效。"
+    L["DEFAULT_TAB_TT"] = [=[设置WQT作为你登录后的默认选项卡。
+不会对110级以下的角色生效。]=]
     L["EMISSARY_COUNTER"] = "大使任务计数器"
     L["EMISSARY_COUNTER_TT"] = "在大使任务标签上添加计数器来标识每个大使任务的完成进度"
     L["FILTER_PINS"] = "过滤地图显示"
     L["FILTER_PINS_TT"] = "在地图上显示过滤后的任务信息。"
-    L["FORMAT_GROUP_CREATE"] = "输入 |cFFFFFFFF%d|r 来在组队查找器中创建此任务，或者输入他的名字：|cFFFFFFFF%s|r。考虑同时采取这两种操作来确保不用插件的玩家也可以在组队查找器中发现你创建的任务。"
+    L["FORMAT_GROUP_CREATE"] =
+        "输入 |cFFFFFFFF%d|r 来在组队查找器中创建此任务，或者输入他的名字：|cFFFFFFFF%s|r。考虑同时采取这两种操作来确保不用插件的玩家也可以在组队查找器中发现你创建的任务。"
     L["FORMAT_GROUP_SEARCH"] = "输入 |cFFFFFFFF%d|r 来在组队查找器中搜索这个任务，或者输入它的名字：|cFFFFFFFF%s|r。"
     L["FORMAT_GROUP_TYPO"] = "看起来好像打错了，输入 |cFFFFFFFF%d|r 或 |cFFFFFFFF%s|r。"
     L["GROUP_SEARCH_INFO"] = "暴雪阻止了插件自动在组队查找器中搜索搜索大部分的任务，由于这个原因，玩家必须手动在搜索框中输入并查找。"
@@ -778,13 +845,16 @@ if locale == "koKR" then
     L["EMISSARY_COUNTER"] = "사절 카운터"
     L["EMISSARY_COUNTER_TT"] = "각 사절의 진행 상황을 나타내는 사절 탭에 카운터를 추가합니다."
     L["FILTER_PINS"] = "지도 표시 필터"
-    L["FILTER_PINS_TT"] = "지도 상의 표시에 필터를 적용합니다."
-    L["FORMAT_GROUP_CREATE"] = "이 퀘스트의 그룹을 생성하려면 |cFFFFFFFF%d|r|1을;를; 입력하세요. 또는 이름을 입력하세요: |cFFFFFFFF%s|r. 추가 기능이 없는 플레이어도 그룹을 찾을 수 있도록 두 가지를 모두 사용하십시오."
+    L["FILTER_PINS_TT"] = [=[지도 상의 표시에
+필터를 적용합니다.]=]
+    L["FORMAT_GROUP_CREATE"] =
+        "이 퀘스트의 그룹을 생성하려면 |cFFFFFFFF%d|r|1을;를; 입력하세요. 또는 이름을 입력하세요: |cFFFFFFFF%s|r. 추가 기능이 없는 플레이어도 그룹을 찾을 수 있도록 두 가지를 모두 사용하십시오."
     L["FORMAT_GROUP_SEARCH"] = "이 퀘스트에 대한 그룹을 검색하려면 |cFFFFFFFF%d|r|1을;를; 입력하세요. 또는 이름을 입력하세요: |cFFFFFFFF%s|r."
     L["FORMAT_GROUP_TYPO"] = "오타가 발생한 것 같습니다. |cFFFFFFFF%d|r 또는 |cFFFFFFFF%s|r|1을;를; 입력하세요."
     L["GROUP_SEARCH_INFO"] = "블리자드는 부가 기능이 전역 퀘스트의 대부분의 퀘스트를 위한 그룹을 자동으로 찾지 못하게합니다. 이 때문에 플레이어는 검색 창을 수동으로 채원야합니다."
     L["LFG_BUTTONS"] = "LFG 단추 활성화"
-    L["LFG_BUTTONS_TT"] = "목표 추적기의 전역 퀘스트에 LFG 단추를 추가합니다. 이 설정을 사용하면 메모리 및 CPU 사용량이 증가 할 수 있습니다. |cFFFF5555이 설정을 적용하려면 재시작해야 합니다.|r"
+    L["LFG_BUTTONS_TT"] =
+        "목표 추적기의 전역 퀘스트에 LFG 단추를 추가합니다. 이 설정을 사용하면 메모리 및 CPU 사용량이 증가 할 수 있습니다. |cFFFF5555이 설정을 적용하려면 재시작해야 합니다.|r"
     L["LIST_FULL_TIME"] = "시간 확장"
     L["LIST_FULL_TIME_TT"] = "시간에 일, 분, 시간을 추가하여 시간에 보조 비율을 포함시킵니다."
     L["LIST_SETTINGS"] = "목록 설정"
@@ -793,7 +863,8 @@ if locale == "koKR" then
     L["LOAD_UTILITIES_TT_DISABLED"] = "|cFFFF5555애드온 목록에 World Quest Tab Utilities가 활성화되어 있지 않습니다.|r"
     L["MAP_FILTER_DISABLED"] = "세계 지도 필터로 비활성화."
     L["MAP_FILTER_DISABLED_BUTTON_INFO"] = "우-클릭으로 이 필터 다시 활성화"
-    L["MAP_FILTER_DISABLED_INFO"] = "세계 지도의 오른쪽 상단에 있는 돋보기에서 일부 필터를 사용하지 않도록 설정했습니다. 목록에서 일부 퀘스트를 숨기고 일부 필터 설정을 비활성화 할 수 있습니다."
+    L["MAP_FILTER_DISABLED_INFO"] =
+        "세계 지도의 오른쪽 상단에 있는 돋보기에서 일부 필터를 사용하지 않도록 설정했습니다. 목록에서 일부 퀘스트를 숨기고 일부 필터 설정을 비활성화 할 수 있습니다."
     L["MAP_FILTER_DISABLED_TITLE"] = "일부 세계 지도 필터가 비활성화되었습니다"
     L["NO_FACTION"] = "진영 없음"
     L["NUMBERS_FIRST"] = "%g만"
@@ -824,11 +895,14 @@ if locale == "koKR" then
     L["QUEST_COUNTER_TITLE"] = "숨겨진 퀘스트"
     L["QUEST_COUNTER_TT"] = "기본 퀘스트 로그에 퀘스트의 숫자를 표시합니다."
     L["SAVE_SETTINGS"] = "필터/정렬 저장"
-    L["SAVE_SETTINGS_TT"] = "세션과 다시 불러오기 간에 필터와 정렬 설정을 저장합니다."
+    L["SAVE_SETTINGS_TT"] = [=[세션과 다시 불러오기 간에
+필터와 정렬 설정을 저장합니다.]=]
     L["SHOW_FACTION"] = "진영 표시"
-    L["SHOW_FACTION_TT"] = "퀘스트 목록에 진영 아이콘을 표시합니다."
+    L["SHOW_FACTION_TT"] = [=[퀘스트 목록에
+진영 아이콘을 표시합니다.]=]
     L["SHOW_TYPE"] = "유형 표시"
-    L["SHOW_TYPE_TT"] = "퀘스트 목록에 유형 아이콘을 표시합니다."
+    L["SHOW_TYPE_TT"] = [=[퀘스트 목록에
+유형 아이콘을 표시합니다.]=]
     L["SHOW_ZONE"] = "지역 표시"
     L["SHOW_ZONE_TT"] = "목록에 여러 지역의 퀘스트가 포함된 경우 지역 이름을 표시합니다."
     L["TIME"] = "시간"
@@ -851,3 +925,4 @@ if locale == "koKR" then
 end
 
 addon.L = L
+

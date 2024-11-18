@@ -784,16 +784,46 @@ function WQT_PinMixin:UpdateVisuals()
     end
     self.CustomTypeIcon:SetDesaturated(isDisliked)
 
-    -- Time
-    local settingPinTimeLabel = WQT_Utils:GetSetting("pin", "timeLabel")
-    local showTimeString = settingPinTimeLabel and timeStringShort ~= ""
-    self.Time:SetShown(showTimeString)
-    self.TimeBG:SetShown(showTimeString)
-    local timeOffset = 4
-    if (#self.icons > 0) then
-        timeOffset = (#self.icons % 2 == 0) and 2 or 0
+    -- Optional label
+    local settingPinOptionalLabel = WQT_Utils:GetSetting("pin", "optionalLabel")
+    if settingPinOptionalLabel == _V["OPTIONAL_LABEL_TYPES"].time then
+        local showTimeString = timeStringShort ~= ""
+        self.Time:SetShown(showTimeString)
+        self.TimeBG:SetShown(showTimeString)
+        local timeOffset = 4
+        if (#self.icons > 0) then
+            timeOffset = (#self.icons % 2 == 0) and 2 or 0
+        end
+        self.Time:SetPoint("TOP", self, "BOTTOM", 1, timeOffset)
+    elseif settingPinOptionalLabel == _V["OPTIONAL_LABEL_TYPES"].amount then
+        local topreward = questInfo.rewardList[1]
+        if topreward and topreward.amount > 1 then
+            local r, g, b = 1, 1, 1
+            local amount = topreward.amount
+
+            if topreward.type == WQT_REWARDTYPE.gold then
+                amount = floor(amount / 10000)
+            end
+
+            if topreward.type == WQT_REWARDTYPE.equipment then
+                r, g, b = topreward.textColor.r, topreward.textColor.g, topreward.textColor.b
+            end
+
+            self.Time:Show()
+            self.Time:SetText(amount)
+            self.Time:SetVertexColor(r, g, b)
+            self.TimeBG:Show()
+
+            local timeOffset = 4
+            if (#self.icons > 0) then
+                timeOffset = (#self.icons % 2 == 0) and 2 or 0
+            end
+            self.Time:SetPoint("TOP", self, "BOTTOM", 1, timeOffset)
+        end
+    else
+        self.Time:Hide()
+        self.TimeBG:Hide()
     end
-    self.Time:SetPoint("TOP", self, "BOTTOM", 1, timeOffset)
 
     -- Warband bonus icon
     local settingPinWarbandBonus = WQT_Utils:GetSetting("pin", "showWarbandBonus")
@@ -844,7 +874,7 @@ function WQT_PinMixin:UpdatePinTime()
     end
 
     -- Time text under pin
-    if (WQT_Utils:GetSetting("pin", "timeLabel")) then
+    if (WQT_Utils:GetSetting("pin", "optionalLabel") == _V["OPTIONAL_LABEL_TYPES"].time) then
         self.Time:SetText(timeStringShort)
         if (isDisliked) then
             self.Time:SetVertexColor(1, 1, 1)
@@ -1036,3 +1066,4 @@ function WQT_PinMixin:SetNudge(x, y)
     self.nudgeX = x
     self.nudgeY = y
 end
+
