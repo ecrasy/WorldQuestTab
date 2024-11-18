@@ -14,7 +14,7 @@
 --		mapX					[number] x pin position
 --		mapY					[number] y pin position
 -- Reward					[table]
---		typeBits				[bitfield] a combination of flags for all the types of rewards the quest provides. I.e. AP + gold + rep = 2^3 + 2^6 + 2^9 = 584 (1001001000‬)
+--		typeBits				[bitfield] a combination of flags for all the types of rewards the quest provides. I.e. AP + gold + rep = 2^3 + 2^6 + 2^9 = 584 (1001001000)
 -- rewardList				[table] List of rewards sorted by priority and filter settings
 --		iterative list of rewardInfo tables
 --
