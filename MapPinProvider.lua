@@ -797,7 +797,8 @@ function WQT_PinMixin:UpdateVisuals()
         self.Time:SetPoint("TOP", self, "BOTTOM", 1, timeOffset)
     elseif settingPinOptionalLabel == _V["OPTIONAL_LABEL_TYPES"].amount then
         local topreward = questInfo.rewardList[1]
-        if topreward and topreward.amount > 1 then
+        local showAmount = false
+        if topreward and topreward.amount and topreward.amount > 1 then
             local r, g, b = 1, 1, 1
             local amount = topreward.amount
 
@@ -809,17 +810,18 @@ function WQT_PinMixin:UpdateVisuals()
                 r, g, b = topreward.textColor.r, topreward.textColor.g, topreward.textColor.b
             end
 
-            self.Time:Show()
             self.Time:SetText(amount)
             self.Time:SetVertexColor(r, g, b)
-            self.TimeBG:Show()
 
             local timeOffset = 4
             if (#self.icons > 0) then
                 timeOffset = (#self.icons % 2 == 0) and 2 or 0
             end
             self.Time:SetPoint("TOP", self, "BOTTOM", 1, timeOffset)
+            showAmount = true
         end
+        self.Time:SetShown(showAmount)
+        self.TimeBG:SetShown(showAmount)
     else
         self.Time:Hide()
         self.TimeBG:Hide()
