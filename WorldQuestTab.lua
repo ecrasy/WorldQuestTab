@@ -2072,11 +2072,13 @@ function WQT_CoreMixin:HideOfficialMapPins()
         end
 
         -- Bonus world quests
-        WQT_Utils:ItterateAllBonusObjectivePins(
-            function(pin)
-                self:TryHideOfficialMapPin(pin)
-            end
-        )
+        if not WQT.db.global.pin.showWarbandBonus then
+            WQT_Utils:ItterateAllBonusObjectivePins(
+                function(pin)
+                    self:TryHideOfficialMapPin(pin)
+                end
+            )
+        end
     end
 end
 

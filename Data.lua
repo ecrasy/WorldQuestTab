@@ -2293,6 +2293,10 @@ end
 -- This is just easier to maintain than changing the entire string every time
 _V["PATCH_NOTES"] = {
     {
+        ["version"] = "11.0.7",
+        ["intro"] = { "Update for 11.0.7." },
+    },
+    {
         ["version"] = "11.0.5.3",
         ["fixes"] = {
             "Fixed an error using the new optional label option."
