@@ -1672,7 +1672,7 @@ function WQT_ScrollListMixin:FilterQuestList()
             else
                 -- Official filtering
                 if
-                    QuestUtils_IsQuestWorldQuest(questInfo.questID) or
+                    (questInfo.questID < 70000) or QuestUtils_IsQuestWorldQuest(questInfo.questID) or
                         QuestUtils_IsQuestBonusObjective(questInfo.questID)
                  then
                     passed = BlizFiltering and WorldMap_DoesWorldQuestInfoPassFilters(questInfo) or not BlizFiltering
@@ -2072,13 +2072,11 @@ function WQT_CoreMixin:HideOfficialMapPins()
         end
 
         -- Bonus world quests
-        if not WQT.db.global.pin.showWarbandBonus then
-            WQT_Utils:ItterateAllBonusObjectivePins(
-                function(pin)
-                    self:TryHideOfficialMapPin(pin)
-                end
-            )
-        end
+        WQT_Utils:ItterateAllBonusObjectivePins(
+            function(pin)
+                self:TryHideOfficialMapPin(pin)
+            end
+        )
     end
 end
 
@@ -2156,12 +2154,11 @@ function WQT_CoreMixin:OnLoad()
     self.variables = addon.variables
 
     -- Add utilities options to the settings if it's installed but not enabled
-    if (_utilitiesInstalled) then
-        for k, setting in ipairs(_V["SETTING_UTILITIES_LIST"]) do
-            tinsert(_V["SETTING_LIST"], setting)
-        end
-    end
-
+    --[[if (_utilitiesInstalled) then
+		for k, setting in ipairs(_V["SETTING_UTILITIES_LIST"]) do
+			tinsert(_V["SETTING_LIST"], setting);
+		end
+	end]]
     -- Quest Dataprovider
     self.dataProvider = CreateAndInitFromMixin(WQT_DataProvider)
 
@@ -2274,21 +2271,17 @@ function WQT_CoreMixin:OnLoad()
     EventRegistry:RegisterCallback(
         "ShowMapLegend",
         function()
-            self.isMapLegend = true
+            self.isMapLegendVisible = true
             self:SelectTab(WQT_TabNormal)
             WQT_WorldQuestFrame:ChangeAnchorLocation(_V["LIST_ANCHOR_TYPE"].world)
-            WQT_TabNormal:Hide()
-            WQT_TabWorld:Hide()
-            QuestMapFrame.QuestsFrame.SearchBox:Hide() -- ???
         end
     )
     EventRegistry:RegisterCallback(
         "HideMapLegend",
         function()
-            self.isMapLegend = false
+            self.isMapLegendVisible = false
             self:SelectTab(WQT_TabNormal)
             WQT_WorldQuestFrame:ChangeAnchorLocation(_V["LIST_ANCHOR_TYPE"].world)
-            QuestMapFrame.QuestsFrame.SearchBox:Show()
         end
     )
 
@@ -3030,10 +3023,12 @@ function WQT_CoreMixin:SelectTab(tab)
         WQT_WorldQuestFrame.pinDataProvider:RefreshAllData()
     end
     self.selectedTab = tab
-    if not self.isMapLegend then
-        WQT_TabNormal:Show()
-        WQT_TabWorld:Show()
-    end
+
+    -- Hide quest log search box if the map legend is shown
+    QuestMapFrame.QuestsFrame.SearchBox:SetShown(not self.isMapLegendVisible)
+
+    WQT_TabNormal:SetShown(not self.isMapLegendVisible)
+    WQT_TabWorld:SetShown(not self.isMapLegendVisible)
     WQT_TabNormal:SetFrameLevel(2)
     WQT_TabWorld:SetFrameLevel(2)
     WQT_TabNormal.Hider:Show()
@@ -3055,7 +3050,7 @@ function WQT_CoreMixin:SelectTab(tab)
         WQT_TabNormal.Highlight:Show()
         WQT_TabNormal.TabBg:SetTexCoord(0.01562500, 0.79687500, 0.78906250, 0.95703125)
         WQT_TabWorld.TabBg:SetTexCoord(0.01562500, 0.79687500, 0.61328125, 0.78125000)
-        QuestScrollFrame:Show()
+        QuestScrollFrame:SetShown(not self.isMapLegendVisible) -- Only show if the map legend is not visible
     elseif id == 2 then
         -- WQT
         WQT_TabWorld:SetFrameLevel(10)
@@ -3169,4 +3164,3 @@ function WQT_CoreMixin:LoadExternal(external)
         tinsert(addon.externals, external)
     end
 end
-
